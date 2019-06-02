@@ -1,6 +1,7 @@
 package dev.thedutchruben.modules.game;
 
 import dev.thedutchruben.minigamescore;
+import dev.thedutchruben.modules.game.commands.GameCommand;
 import dev.thedutchruben.modules.game.listener.GameEndListener;
 import dev.thedutchruben.modules.game.listener.GamePLayerQuitListener;
 import dev.thedutchruben.modules.game.listener.GamePlayerJoinListener;
@@ -12,6 +13,7 @@ public class GameModule {
 
     public GameModule(){
         registerListeners();
+        registerCommand();
     }
 
     public void registerListeners(){
@@ -22,9 +24,8 @@ public class GameModule {
 
     }
 
-
-    public void forceStart(){
-        GameStartRunnable.setTime(10);
-        Bukkit.broadcastMessage("De game is geforcestart!");
+    public void registerCommand(){
+        minigamescore.getInstance().getCommand("game").setExecutor(new GameCommand());
     }
+
 }

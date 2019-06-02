@@ -19,9 +19,11 @@ import java.util.Iterator;
 import java.util.List;
 
 public class GameModule {
-    private BossBar bossBar = Bukkit.createBossBar(new NamespacedKey(Thesearch.getInstance(),"timer"),"Time left", BarColor.PINK, BarStyle.SOLID);
+    private BossBar bossBar = Bukkit.createBossBar(new NamespacedKey(Thesearch.getInstance(),"timer"),"Time left", BarColor.PINK, BarStyle.SEGMENTED_20);
 
     public GameModule() {
+        bossBar.setProgress(1);
+
         registerListeners();
     }
 

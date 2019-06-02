@@ -1,5 +1,6 @@
 package dev.thedutchruben.utils;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -11,6 +12,9 @@ public class MessageUtil {
         player.sendMessage(ChatColor.translateAlternateColorCodes('&',getPrefix() + message));
     }
 
+    public static void broadCast(String message){
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&',getPrefix() + message));
+    }
     public static String getPrefix() {
         return prefix;
     }

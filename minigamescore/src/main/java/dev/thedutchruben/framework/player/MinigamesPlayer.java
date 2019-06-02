@@ -93,7 +93,10 @@ public class MinigamesPlayer {
     }
 
     public void addCoins(int coins){
-        setCoins(getCoins() + coins);
+        setCoins(
+                getCoins()
+                        +
+                        coins);
         MessageUtil.sendMessage(getBukkitPLayer(),"Je hebt &8" + coins + "&7 coins ondvangen!");
     }
 

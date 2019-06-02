@@ -29,7 +29,7 @@ public class GameStartListener implements Listener {
             SkullCreator.blockWithUrl(location.getBlock(),"http://textures.minecraft.net/texture/955d611a878e821231749b2965708cad942650672db09e26847a88e2fac2946");
         });
         for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-            onlinePlayer.setWalkSpeed(0.5F);
+            onlinePlayer.setWalkSpeed(0.3F);
             Thesearch.getInstance().getGameMode().getBossBar().addPlayer(onlinePlayer);
         }
         Bukkit.getScheduler().runTaskTimerAsynchronously(Thesearch.getInstance(),new GameEndRunnable(),0,20);

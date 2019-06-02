@@ -11,8 +11,9 @@ public class GameEndRunnable implements Runnable {
 
     @Override
     public void run() {
-        int timeleft = (1/ 300) * gameTime;
-        Thesearch.getInstance().getGameMode().getBossBar().setProgress(timeleft);
+        float timeleft = (1/ 300);
+        System.out.println(timeleft * gameTime);
+        Thesearch.getInstance().getGameMode().getBossBar().setProgress(timeleft * gameTime);
         if(gameTime == 120){
             Bukkit.broadcastMessage("De game eindigd over 2 minuuten!");
         }
@@ -22,7 +23,7 @@ public class GameEndRunnable implements Runnable {
         }
 
         if(gameTime == 0){
-            Bukkit.getPluginManager().callEvent(new dev.thedutchruben.framework.server.events.GameEndEvent(Game.getGame()));
+            Bukkit.getScheduler().runTask(Thesearch.getInstance(),() -> Bukkit.getPluginManager().callEvent(new dev.thedutchruben.framework.server.events.GameEndEvent(Game.getGame())));
         }
         gameTime--;
 
