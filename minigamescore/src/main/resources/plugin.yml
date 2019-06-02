@@ -1,0 +1,4 @@
+name: MinigamesCore
+version: ${project.version}
+main: dev.thedutchruben.minigamescore
+api-version: 1.13

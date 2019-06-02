@@ -1,0 +1,4 @@
+name: Tntrun
+version: ${project.version}
+main: dev.thedutchruben.tntrun.Tntrun
+api-version: 1.13

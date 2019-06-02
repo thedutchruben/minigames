@@ -1,0 +1,53 @@
+package dev.thedutchruben.thesearch.modules.game.listeners;
+
+import dev.thedutchruben.framework.server.Game;
+import dev.thedutchruben.framework.server.events.GameEndEvent;
+import dev.thedutchruben.minigamescore;
+import dev.thedutchruben.thesearch.Thesearch;
+import dev.thedutchruben.thesearch.framework.player.SearchPlayer;
+import dev.thedutchruben.utils.MessageUtil;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.event.Event;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
+
+public class PlayerInteractListener implements Listener {
+
+    @EventHandler
+    public void onInteract(PlayerInteractEvent interactEvent){
+        if(interactEvent.getAction() == Action.RIGHT_CLICK_BLOCK){
+            if(interactEvent.getClickedBlock().getType() == Material.PLAYER_HEAD){
+                interactEvent.setCancelled(true);
+                interactEvent.setUseInteractedBlock(Event.Result.DENY);
+                SearchPlayer searchPlayer = Thesearch.getInstance().getPlayerModule().getSearchPlayers().get(interactEvent.getPlayer().getUniqueId());
+                if(!searchPlayer.getLocations().contains(interactEvent.getClickedBlock().getLocation())){
+                    searchPlayer.getLocations().add(interactEvent.getClickedBlock().getLocation());
+                    MessageUtil.sendMessage(interactEvent.getPlayer(),ChatColor.GREEN + "Je hebt een head gevonden! zoek snel nog meer!" + searchPlayer.getLocations().size() + " / " + Thesearch.getInstance().getMap().getAmmount());
+                    minigamescore.
+                            getInstance().
+                            getPlayerModule().
+                            getMinigamesPlayers().
+                            get(
+                                    interactEvent.
+                                            getPlayer()).
+                            addCoins(5);
+                    if(searchPlayer.getLocations().size() == Thesearch.getInstance().getMap().getAmmount()){
+                        Bukkit.broadcastMessage(ChatColor.GOLD + interactEvent.getPlayer().getName() + " heeft gewonnen!");
+                        Bukkit.getServer().getPluginManager().callEvent(new GameEndEvent(Game.getGame()));
+                        interactEvent.getPlayer().setPlayerListName("[%amount%]".replace("%amount%",searchPlayer.getLocations().size() + "") + interactEvent.getPlayer().getName());
+                        minigamescore.getInstance().getPlayerModule().getMinigamesPlayers().get(interactEvent.getPlayer()).addCoins(10);
+                    }
+                    return;
+                }else{
+                    MessageUtil.sendMessage(interactEvent.getPlayer(),ChatColor.RED + "Je hebt deze head al gevonden zoek snel een andere!");
+
+                }
+                interactEvent.setCancelled(true);
+            }
+        }
+    }
+}
