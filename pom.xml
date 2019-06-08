@@ -8,4 +8,10 @@
     <artifactId>minigames</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <modules>
+        <module>minigamescore</module>
+        <module>MinigamesLobby</module>
+        <module>the_search</module>
+        <module>tntrun</module>
+    </modules>
 </project>

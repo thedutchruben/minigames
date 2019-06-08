@@ -2,3 +2,7 @@ name: MinigamesCore
 version: ${project.version}
 main: dev.thedutchruben.minigamescore
 api-version: 1.13
+commands:
+  game:
+    description: Game command
+    permission: minigames.core.command.game
