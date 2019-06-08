@@ -1,8 +1,8 @@
 package dev.thedutchruben.tntrun;
 
-import dev.thedutchruben.framework.server.Game;
-import dev.thedutchruben.framework.server.GameState;
-import dev.thedutchruben.framework.server.GameType;
+import dev.thedutchruben.core.framework.server.Game;
+import dev.thedutchruben.core.framework.server.GameState;
+import dev.thedutchruben.core.framework.server.GameType;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Tntrun extends JavaPlugin {

@@ -1,6 +1,6 @@
 name: MinigamesCore
 version: ${project.version}
-main: dev.thedutchruben.minigamescore
+main: dev.thedutchruben.core.minigamescore
 api-version: 1.13
 commands:
   game:

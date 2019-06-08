@@ -1,11 +1,11 @@
 package dev.thedutchruben.thesearch.modules.game.listeners;
 
-import dev.thedutchruben.framework.server.Game;
-import dev.thedutchruben.framework.server.events.GameEndEvent;
+import dev.thedutchruben.core.framework.server.Game;
+import dev.thedutchruben.core.framework.server.events.GameEndEvent;
 import dev.thedutchruben.minigamescore;
 import dev.thedutchruben.thesearch.Thesearch;
 import dev.thedutchruben.thesearch.framework.player.SearchPlayer;
-import dev.thedutchruben.utils.MessageUtil;
+import dev.thedutchruben.core.utils.MessageUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

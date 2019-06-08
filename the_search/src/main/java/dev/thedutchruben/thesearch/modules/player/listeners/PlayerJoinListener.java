@@ -1,7 +1,6 @@
 package dev.thedutchruben.thesearch.modules.player.listeners;
 
-import dev.thedutchruben.framework.player.event.MinigamePlayerJoinEvent;
-import dev.thedutchruben.framework.scoreboard.Scoreboard;
+import dev.thedutchruben.core.framework.player.event.MinigamePlayerJoinEvent;
 import dev.thedutchruben.thesearch.Thesearch;
 import dev.thedutchruben.thesearch.framework.player.SearchPlayer;
 import org.bukkit.event.EventHandler;

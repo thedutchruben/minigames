@@ -1,7 +1,7 @@
 package dev.thedutchruben.thesearch.modules.player;
 
-import dev.thedutchruben.framework.player.MinigamesPlayer;
-import dev.thedutchruben.framework.scoreboard.Scoreboard;
+import dev.thedutchruben.core.framework.player.MinigamesPlayer;
+import dev.thedutchruben.core.framework.scoreboard.Scoreboard;
 import dev.thedutchruben.thesearch.Thesearch;
 import dev.thedutchruben.thesearch.framework.player.SearchPlayer;
 import dev.thedutchruben.thesearch.modules.player.listeners.PlayerJoinListener;

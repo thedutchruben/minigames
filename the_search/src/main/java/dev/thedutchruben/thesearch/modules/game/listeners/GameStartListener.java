@@ -1,11 +1,11 @@
 package dev.thedutchruben.thesearch.modules.game.listeners;
 
-import dev.thedutchruben.framework.server.events.GameEndEvent;
-import dev.thedutchruben.framework.server.events.GameStartEvent;
+import dev.thedutchruben.core.framework.server.events.GameEndEvent;
+import dev.thedutchruben.core.framework.server.events.GameStartEvent;
 import dev.thedutchruben.thesearch.Thesearch;
 import dev.thedutchruben.thesearch.framework.map.Map;
 import dev.thedutchruben.thesearch.modules.game.runnables.GameEndRunnable;
-import dev.thedutchruben.utils.SkullCreator;
+import dev.thedutchruben.core.utils.SkullCreator;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -14,8 +14,6 @@ import org.bukkit.block.Skull;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 import java.util.List;
 

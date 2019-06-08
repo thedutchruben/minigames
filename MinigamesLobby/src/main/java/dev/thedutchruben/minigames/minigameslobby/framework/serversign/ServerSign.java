@@ -1,7 +1,7 @@
 package dev.thedutchruben.minigames.minigameslobby.framework.serversign;
 
-import dev.thedutchruben.framework.server.GameState;
-import dev.thedutchruben.framework.server.GameType;
+import dev.thedutchruben.core.framework.server.GameState;
+import dev.thedutchruben.core.framework.server.GameType;
 import dev.thedutchruben.minigames.minigameslobby.MinigamesLobby;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;

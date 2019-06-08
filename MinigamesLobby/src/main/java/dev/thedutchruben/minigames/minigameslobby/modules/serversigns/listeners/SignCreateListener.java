@@ -1,6 +1,6 @@
 package dev.thedutchruben.minigames.minigameslobby.modules.serversigns.listeners;
 
-import dev.thedutchruben.framework.server.GameType;
+import dev.thedutchruben.core.framework.server.GameType;
 import dev.thedutchruben.minigames.minigameslobby.framework.serversign.ServerSign;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

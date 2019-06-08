@@ -1,9 +1,8 @@
 package dev.thedutchruben.thesearch.modules.game.runnables;
 
-import dev.thedutchruben.framework.server.Game;
+import dev.thedutchruben.core.framework.server.Game;
 import dev.thedutchruben.thesearch.Thesearch;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 
 public class GameEndRunnable implements Runnable {
 
@@ -23,7 +22,7 @@ public class GameEndRunnable implements Runnable {
         }
 
         if(gameTime == 0){
-            Bukkit.getScheduler().runTask(Thesearch.getInstance(),() -> Bukkit.getPluginManager().callEvent(new dev.thedutchruben.framework.server.events.GameEndEvent(Game.getGame())));
+            Bukkit.getScheduler().runTask(Thesearch.getInstance(),() -> Bukkit.getPluginManager().callEvent(new dev.thedutchruben.core.framework.server.events.GameEndEvent(Game.getGame())));
         }
         gameTime--;
 

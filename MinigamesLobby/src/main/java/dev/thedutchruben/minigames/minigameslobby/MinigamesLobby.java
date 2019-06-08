@@ -1,11 +1,11 @@
 package dev.thedutchruben.minigames.minigameslobby;
 
-import dev.thedutchruben.framework.server.Game;
-import dev.thedutchruben.framework.server.GameState;
-import dev.thedutchruben.framework.server.GameType;
+import dev.thedutchruben.core.framework.server.Game;
+import dev.thedutchruben.core.framework.server.GameState;
+import dev.thedutchruben.core.framework.server.GameType;
 import dev.thedutchruben.minigames.minigameslobby.modules.player.PlayerModule;
 import dev.thedutchruben.minigames.minigameslobby.modules.serversigns.ServersignModule;
-import dev.thedutchruben.utils.Config;
+import dev.thedutchruben.core.utils.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 

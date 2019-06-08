@@ -2,7 +2,7 @@ package dev.thedutchruben.minigames.minigameslobby.modules.player;
 
 import dev.thedutchruben.minigames.minigameslobby.MinigamesLobby;
 import dev.thedutchruben.minigames.minigameslobby.modules.player.listeners.MinigamesPlayerJoinListener;
-import dev.thedutchruben.utils.ItemBuilder;
+import dev.thedutchruben.core.utils.ItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
