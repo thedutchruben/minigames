@@ -33,9 +33,6 @@ public class PlayerModule {
     }
 
     public void setScoreboard(MinigamesPlayer minigamesPlayer){
-        Scoreboard scoreboard = new Scoreboard("&2The Search");
-        scoreboard.addLine("");
-        scoreboard.addLine("Nummer 1 :");
-        scoreboard.addLine(Thesearch.getInstance().getGameMode().getTopPlayers().next().getLocations().size()+ "");
+
     }
 }

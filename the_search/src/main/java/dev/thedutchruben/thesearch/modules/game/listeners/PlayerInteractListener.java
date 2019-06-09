@@ -2,7 +2,7 @@ package dev.thedutchruben.thesearch.modules.game.listeners;
 
 import dev.thedutchruben.core.framework.server.Game;
 import dev.thedutchruben.core.framework.server.events.GameEndEvent;
-import dev.thedutchruben.minigamescore;
+import dev.thedutchruben.core.MiniGamesCore;
 import dev.thedutchruben.thesearch.Thesearch;
 import dev.thedutchruben.thesearch.framework.player.SearchPlayer;
 import dev.thedutchruben.core.utils.MessageUtil;
@@ -27,19 +27,12 @@ public class PlayerInteractListener implements Listener {
                 if(!searchPlayer.getLocations().contains(interactEvent.getClickedBlock().getLocation())){
                     searchPlayer.getLocations().add(interactEvent.getClickedBlock().getLocation());
                     MessageUtil.sendMessage(interactEvent.getPlayer(),ChatColor.GREEN + "Je hebt een head gevonden! zoek snel nog meer! (" + searchPlayer.getLocations().size() + " / " + Thesearch.getInstance().getMap().getAmmount()+ ")");
-                    minigamescore.
-                            getInstance().
-                            getPlayerModule().
-                            getMinigamesPlayers().
-                            get(
-                                    interactEvent.
-                                            getPlayer()).
-                            addCoins(5);
+                        //todo add 1 coins
                     if(searchPlayer.getLocations().size() == Thesearch.getInstance().getMap().getAmmount()){
                         Bukkit.broadcastMessage(ChatColor.GOLD + interactEvent.getPlayer().getName() + " heeft gewonnen!");
                         Bukkit.getServer().getPluginManager().callEvent(new GameEndEvent(Game.getGame()));
                         interactEvent.getPlayer().setPlayerListName("[%amount%]".replace("%amount%",searchPlayer.getLocations().size() + "") + interactEvent.getPlayer().getName());
-                        minigamescore.getInstance().getPlayerModule().getMinigamesPlayers().get(interactEvent.getPlayer()).addCoins(10);
+                        //todo add 10 coins
                     }
                     return;
                 }else{

@@ -1,4 +1,4 @@
-package dev.thedutchruben.framework.player;
+package dev.thedutchruben.core.framework.player;
 
 public interface PlayerData {
 

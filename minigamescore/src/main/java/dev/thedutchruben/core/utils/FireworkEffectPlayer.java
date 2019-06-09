@@ -1,7 +1,6 @@
 package dev.thedutchruben.core.utils;
 
-import dev.thedutchruben.core.minigamescore;
-import dev.thedutchruben.core.minigamescore;
+import dev.thedutchruben.core.MiniGamesCore;
 import org.bukkit.Bukkit;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
@@ -79,7 +78,7 @@ public class FireworkEffectPlayer {
     }
 
     public void spawn(){
-        Bukkit.getScheduler().runTask(minigamescore.getInstance(),() -> {
+        Bukkit.getScheduler().runTask(MiniGamesCore.getInstance(),() -> {
             this.firework = (Firework)this.location.getWorld().spawnEntity(this.location, EntityType.FIREWORK);
             this.spawnlocation = this.location;
             this.fireworkmeta = (FireworkMeta)this.firework.getFireworkMeta();
@@ -90,7 +89,7 @@ public class FireworkEffectPlayer {
             this.firework.setFireworkMeta(this.fireworkmeta);
 
             if(this.LifeTime != 0){
-                Bukkit.getScheduler().runTaskLater(minigamescore.getInstance(), new Runnable() {
+                Bukkit.getScheduler().runTaskLater(MiniGamesCore.getInstance(), new Runnable() {
 
                     @Override
                     public void run() {

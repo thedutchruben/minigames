@@ -1,6 +1,6 @@
 package dev.thedutchruben.core.modules.game.runnables;
 
-import dev.thedutchruben.core.minigamescore;
+import dev.thedutchruben.core.MiniGamesCore;
 import dev.thedutchruben.core.framework.server.Game;
 import dev.thedutchruben.core.framework.server.GameState;
 import dev.thedutchruben.core.framework.server.events.GameStartEvent;
@@ -24,7 +24,7 @@ public class GameStartRunnable extends BukkitRunnable {
         }
 
         if(sec == 0){
-            Bukkit.getScheduler().runTask(minigamescore.getInstance(),() -> {
+            Bukkit.getScheduler().runTask(MiniGamesCore.getInstance(),() -> {
                 Bukkit.getServer().getPluginManager().callEvent(new GameStartEvent(Game.getGame()));
                 Game.getGame().setGameState(GameState.INGAME);
             });

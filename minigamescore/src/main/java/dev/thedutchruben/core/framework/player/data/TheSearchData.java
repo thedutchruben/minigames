@@ -1,15 +1,23 @@
-package dev.thedutchruben.framework.player.data;
+package dev.thedutchruben.core.framework.player.data;
 
-import dev.thedutchruben.framework.player.PlayerData;
+import dev.thedutchruben.core.framework.level.Level;
+import dev.thedutchruben.core.framework.player.MinigamesPlayer;
+import dev.thedutchruben.core.framework.player.PlayerData;
+import lombok.AllArgsConstructor;
 
 import java.util.Date;
 
+@AllArgsConstructor
 public class TheSearchData  implements PlayerData {
 
     private Date lastTimePlayed;
     private int gamesPlayed;
     private int totalHeadsFound;
     private int gamesWon;
+
+    public static TheSearchData create(MinigamesPlayer player) {
+        return new TheSearchData(new Date(),0,0,0);
+    }
 
     public Date getLastTimePlayed() {
         return lastTimePlayed;

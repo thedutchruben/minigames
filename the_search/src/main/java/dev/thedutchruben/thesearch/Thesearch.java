@@ -6,7 +6,7 @@ import com.mongodb.client.model.UpdateOptions;
 import dev.thedutchruben.core.framework.server.Game;
 import dev.thedutchruben.core.framework.server.GameState;
 import dev.thedutchruben.core.framework.server.GameType;
-import dev.thedutchruben.minigamescore;
+import dev.thedutchruben.core.MiniGamesCore;
 import dev.thedutchruben.thesearch.framework.map.Map;
 import dev.thedutchruben.thesearch.modules.game.GameModule;
 import dev.thedutchruben.thesearch.modules.player.PlayerModule;
@@ -33,7 +33,7 @@ public final class Thesearch extends JavaPlugin {
         // Plugin startup logic
         instance = this;
         new Game("thesearch", GameState.LOBBY, GameType.THE_SEARCH,1,10);
-        mongoCollection = minigamescore.getInstance().getMongoDb().getMongoDatabase().getCollection("the_search");
+        mongoCollection = MiniGamesCore.getInstance().getMongoDb().getMongoDatabase().getCollection("the_search");
         try {
             map = getMapDB().get();
         } catch (InterruptedException e) {
@@ -72,7 +72,7 @@ public final class Thesearch extends JavaPlugin {
             Document document = (Document) documentIterator.first();
             Map map;
             if(document != null && !document.isEmpty()){
-                map = minigamescore.getInstance().getMongoDb().getGson().fromJson(document.toJson(),Map.class);
+                map = MiniGamesCore.getInstance().getMongoDb().getGson().fromJson(document.toJson(),Map.class);
             }else{
                 map = new Map(new Location(Bukkit.getWorlds().get(0),0,0,0),new Location(Bukkit.getWorlds().get(0),0,0,0),new ArrayList<>(),10);
                 save(map);
@@ -85,7 +85,7 @@ public final class Thesearch extends JavaPlugin {
 
     public CompletableFuture<Void> save(Map map) {
         return CompletableFuture.runAsync(() -> {
-            Document document = Document.parse(minigamescore.getInstance().getMongoDb().getGson().toJson(map, Map.class));
+            Document document = Document.parse(MiniGamesCore.getInstance().getMongoDb().getGson().toJson(map, Map.class));
             mongoCollection.replaceOne(new BasicDBObject().append("_id", Bukkit.getWorlds().get(0).getName()), document, new UpdateOptions().upsert(true));
         }).exceptionally(throwable -> {
             throwable.printStackTrace();

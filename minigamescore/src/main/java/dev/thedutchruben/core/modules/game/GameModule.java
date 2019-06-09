@@ -1,6 +1,6 @@
 package dev.thedutchruben.core.modules.game;
 
-import dev.thedutchruben.core.minigamescore;
+import dev.thedutchruben.core.MiniGamesCore;
 import dev.thedutchruben.core.modules.game.commands.GameCommand;
 import dev.thedutchruben.core.modules.game.listener.GameEndListener;
 import dev.thedutchruben.core.modules.game.listener.GamePLayerQuitListener;
@@ -17,14 +17,14 @@ public class GameModule {
 
     public void registerListeners(){
         PluginManager pluginManager = Bukkit.getPluginManager();
-        pluginManager.registerEvents(new GamePlayerJoinListener(), minigamescore.getInstance());
-        pluginManager.registerEvents(new GamePLayerQuitListener(), minigamescore.getInstance());
-        pluginManager.registerEvents(new GameEndListener(),minigamescore.getInstance());
+        pluginManager.registerEvents(new GamePlayerJoinListener(), MiniGamesCore.getInstance());
+        pluginManager.registerEvents(new GamePLayerQuitListener(), MiniGamesCore.getInstance());
+        pluginManager.registerEvents(new GameEndListener(),MiniGamesCore.getInstance());
 
     }
 
     public void registerCommand(){
-        minigamescore.getInstance().getCommand("game").setExecutor(new GameCommand());
+        MiniGamesCore.getInstance().getCommand("game").setExecutor(new GameCommand());
     }
 
 }

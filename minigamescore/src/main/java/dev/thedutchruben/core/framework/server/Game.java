@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.UpdateOptions;
-import dev.thedutchruben.core.minigamescore;
+import dev.thedutchruben.core.MiniGamesCore;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -24,7 +24,7 @@ public class Game {
 
     private transient static Game game;
     private transient final MongoCollection mongoCollection;
-    private transient final Gson gson = minigamescore.getInstance().getMongoDb().getGson();
+    private transient final Gson gson = MiniGamesCore.getInstance().getMongoDb().getGson();
 
     private String serverName;
     private GameState gameState;
@@ -46,7 +46,7 @@ public class Game {
      * @param maxPlayers The maximum amount of players that the game can have
      */
     public Game(String serverName,GameState gameState ,GameType gameType, int minPlayers, int maxPlayers){
-        mongoCollection = minigamescore.getInstance().getMongoDb().getMongoDatabase().getCollection("servers");
+        mongoCollection = MiniGamesCore.getInstance().getMongoDb().getMongoDatabase().getCollection("servers");
 
         this.serverName = serverName;
         this.gameState = gameState;
@@ -194,7 +194,7 @@ public class Game {
 
 
     private static void updateGame(){
-        Bukkit.getScheduler().runTaskTimerAsynchronously(minigamescore.getInstance(),() -> Game.getGame().save(),0,20);
+        Bukkit.getScheduler().runTaskTimerAsynchronously(MiniGamesCore.getInstance(),() -> Game.getGame().save(),0,20);
 
     }
 

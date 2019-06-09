@@ -1,5 +1,6 @@
 package dev.thedutchruben.minigames.minigameslobby.modules.player;
 
+import dev.thedutchruben.core.utils.Scoreboard;
 import dev.thedutchruben.minigames.minigameslobby.MinigamesLobby;
 import dev.thedutchruben.minigames.minigameslobby.modules.player.listeners.MinigamesPlayerJoinListener;
 import dev.thedutchruben.core.utils.ItemBuilder;
@@ -8,9 +9,10 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 public class PlayerModule {
-
     public PlayerModule(){
         Bukkit.getPluginManager().registerEvents(new MinigamesPlayerJoinListener(), MinigamesLobby.getInstance());
+
+
     }
 
     public void giveLobbyItems(Player player){

@@ -5,13 +5,14 @@ import dev.thedutchruben.core.MiniGamesCore;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 import java.util.Date;
 
-public class PlayerJoinListener implements Listener {
+public class PlayerQuitListener implements Listener {
 
     @EventHandler
-    public void onJoin(PlayerJoinEvent event){
-        MiniGamesCore.getInstance().getGameLog().addEvent(new Log(new Date(),true,event.getPlayer().getName() + " joined the game!"));
+    public void onQuit(PlayerQuitEvent event){
+        MiniGamesCore.getInstance().getGameLog().addEvent(new Log(new Date(),true,event.getPlayer().getName() + " quit the game!"));
     }
 }

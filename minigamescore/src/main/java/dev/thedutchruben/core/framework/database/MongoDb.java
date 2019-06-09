@@ -7,9 +7,11 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoDatabase;
 
+import dev.thedutchruben.core.framework.database.adabters.DataMapAdapter;
 import dev.thedutchruben.core.framework.database.adabters.ItemMetaAdapter;
 import dev.thedutchruben.core.framework.database.adabters.LocationAdapter;
-import dev.thedutchruben.core.minigamescore;
+import dev.thedutchruben.core.MiniGamesCore;
+import dev.thedutchruben.core.framework.player.DataMap;
 import dev.thedutchruben.core.utils.Config;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -33,7 +35,7 @@ public class MongoDb {
      * Connect Database
      */
     public MongoDb(){
-        mongoConfig = new Config(minigamescore.getInstance(),"mongo.yml");
+        mongoConfig = new Config(MiniGamesCore.getInstance(),"mongo.yml");
         String host = mongoConfig.getConfiguration().getString("db.hostname","minigames-mongo-1");
         String databaseName = mongoConfig.getConfiguration().getString("db.dbname","minigames");
         int port = 27017;
@@ -43,6 +45,7 @@ public class MongoDb {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(ItemMetaAdapter.class, new ItemMetaAdapter());
         gsonBuilder.registerTypeAdapter(Location.class, new LocationAdapter());
+        gsonBuilder.registerTypeAdapter(DataMap.class, new DataMapAdapter());
         gsonBuilder.setLongSerializationPolicy( LongSerializationPolicy.STRING );
         gson = gsonBuilder.create();
     }

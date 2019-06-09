@@ -1,10 +1,11 @@
-package dev.thedutchruben.framework.level;
+package dev.thedutchruben.core.framework.level;
+
+import dev.thedutchruben.core.MiniGamesCore;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Level {
-    private static List<Level> levels = new ArrayList<>();
 
     private int level;
     private int needXp;
@@ -12,7 +13,7 @@ public class Level {
     public Level(int level, int needXp) {
         this.level = level;
         this.needXp = needXp;
-        levels.add(this);
+        MiniGamesCore.getInstance().getLevelLoader().save(this);
     }
 
     public int getLevel() {
@@ -23,7 +24,4 @@ public class Level {
         return needXp;
     }
 
-    public static List<Level> getLevels() {
-        return levels;
-    }
 }

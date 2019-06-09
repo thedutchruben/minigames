@@ -1,5 +1,8 @@
 package dev.thedutchruben.core;
 
+import dev.thedutchruben.core.framework.level.Level;
+import dev.thedutchruben.core.framework.level.LevelLoader;
+import dev.thedutchruben.core.modules.level.LevelModule;
 import dev.thedutchruben.core.utils.BungeeUtil;
 import dev.thedutchruben.core.framework.database.MongoDb;
 import dev.thedutchruben.core.framework.server.Game;
@@ -15,18 +18,22 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
 
 /**
  *  The main class of the plugin
  *  This class registers the modules
  * @author TheDutchRuben
  **/
-public final class minigamescore extends JavaPlugin {
-    @Getter private static minigamescore instance;
+public final class MiniGamesCore extends JavaPlugin {
+    @Getter private static MiniGamesCore instance;
     @Getter private PlayerModule playerModule;
     @Getter private GameModule gameModule;
     @Getter private MongoDb mongoDb;
     @Getter private GameLog gameLog;
+    @Getter private LevelLoader levelLoader;
+    @Getter private LevelModule levelModule;
+    @Getter private Set<Level> levels;
     /**
      * Enabling of the plugin
      * The modules enables one for one
@@ -41,6 +48,9 @@ public final class minigamescore extends JavaPlugin {
             playerModule = new PlayerModule();
             gameModule = new GameModule();
             new LoggingModule();
+            levelLoader = new LevelLoader();
+            levels = levelLoader.loadLevels();
+            levelModule = new LevelModule();
             BungeeUtil.registerBungeeCordOut(this);
             gameLog = new GameLog(new ArrayList<>());
             gameLog.addEvent(new Log(new Date(),false,"Server is opgestart!"));

@@ -1,6 +1,6 @@
 package dev.thedutchruben.core.utils;
 
-import dev.thedutchruben.core.minigamescore;
+import dev.thedutchruben.core.MiniGamesCore;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -30,7 +30,7 @@ public class BungeeUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        player.sendPluginMessage(minigamescore.getInstance(), "BungeeCord", b.toByteArray());
+        player.sendPluginMessage(MiniGamesCore.getInstance(), "BungeeCord", b.toByteArray());
     }
 
 }

@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.UpdateOptions;
-import dev.thedutchruben.core.minigamescore;
+import dev.thedutchruben.core.MiniGamesCore;
 import org.bson.Document;
 
 import java.util.UUID;
@@ -14,9 +14,9 @@ import static com.mongodb.client.model.Filters.eq;
 
 public class PlayerLoader {
     private final MongoCollection mongoCollection;
-    private  final Gson gson = minigamescore.getInstance().getMongoDb().getGson();
+    private  final Gson gson = MiniGamesCore.getInstance().getMongoDb().getGson();
     public PlayerLoader(){
-        mongoCollection = minigamescore.getInstance().getMongoDb().getMongoDatabase().getCollection("player");
+        mongoCollection = MiniGamesCore.getInstance().getMongoDb().getMongoDatabase().getCollection("player");
     }
 
     public CompletableFuture<MinigamesPlayer> getMinigamesPlayer(UUID uuid){

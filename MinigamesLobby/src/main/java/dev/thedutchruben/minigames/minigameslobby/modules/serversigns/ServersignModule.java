@@ -11,7 +11,7 @@ import dev.thedutchruben.minigames.minigameslobby.MinigamesLobby;
 import dev.thedutchruben.minigames.minigameslobby.framework.serversign.ServerSign;
 import dev.thedutchruben.minigames.minigameslobby.modules.serversigns.listeners.SignClickListener;
 import dev.thedutchruben.minigames.minigameslobby.modules.serversigns.listeners.SignCreateListener;
-import dev.thedutchruben.core.minigamescore;
+import dev.thedutchruben.core.MiniGamesCore;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -30,7 +30,7 @@ public class ServersignModule {
     private MongoCollection mongoCollection;
     private Map<Location,Game> locationGameMap;
     public ServersignModule() {
-        mongoCollection = minigamescore.getInstance().getMongoDb().getMongoDatabase().getCollection("servers");
+        mongoCollection = MiniGamesCore.getInstance().getMongoDb().getMongoDatabase().getCollection("servers");
         locationGameMap = new HashMap<>();
         registerListeners();
         Bukkit.getScheduler().runTaskTimerAsynchronously(MinigamesLobby.getInstance(),() ->{
@@ -47,7 +47,7 @@ public class ServersignModule {
     public List<Game> getGames() {
         List<Game> lockedBlocks = new CopyOnWriteArrayList<>();
         mongoCollection.find().forEach((Block<Document>) document -> {
-            lockedBlocks.add(minigamescore.getInstance().getMongoDb().getGson().fromJson(document.toJson(), Game.class));
+            lockedBlocks.add(MiniGamesCore.getInstance().getMongoDb().getGson().fromJson(document.toJson(), Game.class));
         });
 
         return lockedBlocks;
@@ -55,8 +55,8 @@ public class ServersignModule {
 
     public List<ServerSign> getGamesSignDb() {
         List<ServerSign> lockedBlocks = new CopyOnWriteArrayList<>();
-        minigamescore.getInstance().getMongoDb().getMongoDatabase().getCollection("server_signs").find().forEach((Block<Document>) document -> {
-            lockedBlocks.add(minigamescore.getInstance().getMongoDb().getGson().fromJson(document.toJson(), ServerSign.class));
+        MiniGamesCore.getInstance().getMongoDb().getMongoDatabase().getCollection("server_signs").find().forEach((Block<Document>) document -> {
+            lockedBlocks.add(MiniGamesCore.getInstance().getMongoDb().getGson().fromJson(document.toJson(), ServerSign.class));
         });
 
         return lockedBlocks;
@@ -64,8 +64,8 @@ public class ServersignModule {
 
     public void saveGameSign(ServerSign serverSign){
         CompletableFuture.runAsync(() -> {
-            Document document = Document.parse(minigamescore.getInstance().getMongoDb().getGson().toJson(serverSign, ServerSign.class));
-            minigamescore.getInstance().getMongoDb().getMongoDatabase().getCollection("server_signs").replaceOne(new BasicDBObject().append("_id", UUID.randomUUID().toString()), document, new UpdateOptions().upsert(true));
+            Document document = Document.parse(MiniGamesCore.getInstance().getMongoDb().getGson().toJson(serverSign, ServerSign.class));
+            MiniGamesCore.getInstance().getMongoDb().getMongoDatabase().getCollection("server_signs").replaceOne(new BasicDBObject().append("_id", UUID.randomUUID().toString()), document, new UpdateOptions().upsert(true));
         }).exceptionally(throwable -> {
             throwable.printStackTrace();
             return null;
@@ -87,25 +87,21 @@ public class ServersignModule {
 
     public void checkSigns(){
         for (ServerSign serverSign : getServerSigns()) {
+            setNoGameSignText(serverSign.getGame(),serverSign.getLocation());
             if(this.locationGameMap.containsKey(serverSign.getLocation())){
                 Sign sign = (Sign) serverSign.getLocation().getBlock().getState();
                 Game signGame = getGames().stream().filter(game -> game.getGameType() == serverSign.getGame()).filter(game -> game.getServerName().equalsIgnoreCase(sign.getLine(2))).findFirst().get();
                 if (signGame.getGameState() != GameState.RESTARTING && signGame.getGameState() != GameState.ENDING && signGame.getGameState() != GameState.INGAME) {
                     setSignText(signGame,serverSign.getLocation());
-                    System.out.println(1);
                     return;
                 }else {
-                    System.out.println(2);
                     Optional<Game> newGame = getGames().stream().filter(game -> game.getGameState() == GameState.LOBBY).filter(game -> game.getGameType() == serverSign.getGame()).filter(game -> isActive(game)).findFirst();
                     if (newGame.isPresent()) {
-                        System.out.println(3);
                         if(!locationGameMap.containsValue(newGame.get())){
-                            System.out.println(4);
                             setSignText(newGame.get(), serverSign.getLocation());
                             return;
                         }
                     }else{
-                        System.out.println(5);
                         locationGameMap.remove(serverSign.getLocation());
                         setNoGameSignText(serverSign.getGame(),serverSign.getLocation());
                         return;
@@ -113,7 +109,6 @@ public class ServersignModule {
                 }
 
             }else {
-                System.out.println(6);
                 Optional<Game> newGame = getGames().stream()
                         .filter(game -> game.getGameState() == GameState.LOBBY)
                         .filter(game -> game.getGameType() == serverSign.getGame())
@@ -121,9 +116,7 @@ public class ServersignModule {
                 if (newGame.isPresent()&& !locationGameMap.containsValue(newGame.get())) {
                     setSignText(newGame.get(), serverSign.getLocation());
                     locationGameMap.put(serverSign.getLocation(),newGame.get());
-                    System.out.println(7);
                 }else{
-                    System.out.println(8);
                     setNoGameSignText(serverSign.getGame(),serverSign.getLocation());
                 }
             }
