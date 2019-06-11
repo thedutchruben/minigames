@@ -2,6 +2,7 @@ package dev.thedutchruben.minigames.minigameslobby.modules.player.listeners;
 
 import dev.thedutchruben.core.framework.player.MinigamesPlayer;
 import dev.thedutchruben.core.framework.player.event.MinigamePlayerJoinEvent;
+import dev.thedutchruben.core.utils.Holograms;
 import dev.thedutchruben.core.utils.Scoreboard;
 import dev.thedutchruben.minigames.minigameslobby.MinigamesLobby;
 import dev.thedutchruben.core.utils.FireworkEffectPlayer;
@@ -15,6 +16,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
+import java.util.Arrays;
+
 public class MinigamesPlayerJoinListener implements Listener {
 
 
@@ -27,13 +30,8 @@ public class MinigamesPlayerJoinListener implements Listener {
         MinigamesLobby.getInstance().getScoreboards().stream().filter(locationBoard -> locationBoard.getMaterial() == Material.AIR).findFirst().get().getScoreboard().create(player);
 
         Utils.circle(event.getMinigamesPlayer().getBukkitPlayer().getLocation(),
-                2,0,false ,false,0).forEach(location ->{
-            FireworkEffectPlayer fireworkEffectPlayer = new FireworkEffectPlayer();
-            fireworkEffectPlayer.setLocation(location);
-            fireworkEffectPlayer.setPower(0);
-            fireworkEffectPlayer.addEffect(FireworkEffect.builder().flicker(true).withColor(Color.AQUA).withColor(Color.PURPLE).build());
-            fireworkEffectPlayer.setLifeTime(1);
-            fireworkEffectPlayer.spawn();
+                3,4,true ,true,2).forEach(location ->{
+
         });
     }
 }
