@@ -11,6 +11,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.scheduler.BukkitTask;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -39,16 +41,19 @@ public class Game {
     private boolean continuGame = false;
     /**
      * Register the game for the database / lobby
-     * @param serverName The bungee server name
      * @param gameState The default gameState of the server
      * @param gameType The gameType from the server
      * @param minPlayers The minimum amount of players that the game needs
      * @param maxPlayers The maximum amount of players that the game can have
      */
-    public Game(String serverName,GameState gameState ,GameType gameType, int minPlayers, int maxPlayers){
+    public Game(GameState gameState ,GameType gameType, int minPlayers, int maxPlayers){
         mongoCollection = MiniGamesCore.getInstance().getMongoDb().getMongoDatabase().getCollection("servers");
 
-        this.serverName = serverName;
+        try {
+            this.serverName = InetAddress.getLocalHost().getHostName();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
         this.gameState = gameState;
         this.gameType = gameType;
         this.minPlayers = minPlayers;

@@ -14,14 +14,14 @@ import org.bukkit.entity.Player;
 
 public class Holograms {
 
-    private List<EntityArmorStand> entitylist = new ArrayList<EntityArmorStand>();
-    private String[] Text;
+    private List<EntityArmorStand> entityList = new ArrayList<EntityArmorStand>();
+    private List<String> text;
     private Location location;
     private double DISTANCE = 0.25D;
     int count;
 
-    public Holograms(String[] Text, Location location) {
-        this.Text = Text;
+    public Holograms(List<String> text, Location location) {
+        this.text = text;
         this.location = location;
         create();
     }
@@ -47,14 +47,14 @@ public class Holograms {
     }
 
     public void showPlayer(Player p) {
-        for (EntityArmorStand armor : entitylist) {
+        for (EntityArmorStand armor : entityList) {
             PacketPlayOutSpawnEntityLiving packet = new PacketPlayOutSpawnEntityLiving(armor);
             ((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet);
         }
     }
 
     public void hidePlayer(Player p) {
-        for (EntityArmorStand armor : entitylist) {
+        for (EntityArmorStand armor : entityList) {
             PacketPlayOutEntityDestroy packet = new PacketPlayOutEntityDestroy(armor.getId());
             ((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet);
 
@@ -63,7 +63,7 @@ public class Holograms {
 
     public void showAll() {
         for (Player player : Bukkit.getOnlinePlayers()) {
-            for (EntityArmorStand armor : entitylist) {
+            for (EntityArmorStand armor : entityList) {
                 PacketPlayOutSpawnEntityLiving packet = new PacketPlayOutSpawnEntityLiving(armor);
                 ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
             }
@@ -72,7 +72,7 @@ public class Holograms {
 
     public void hideAll() {
         for (Player player : Bukkit.getOnlinePlayers()) {
-            for (EntityArmorStand armor : entitylist) {
+            for (EntityArmorStand armor : entityList) {
                 PacketPlayOutEntityDestroy packet = new PacketPlayOutEntityDestroy(armor.getId());
                 ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
             }
@@ -80,16 +80,14 @@ public class Holograms {
     }
 
     private void create() {
-        for (String text : this.Text) {
+        for (String text : this.text) {
             EntityArmorStand entity = new EntityArmorStand(((CraftWorld) this.location.getWorld()).getHandle(),this.location.getX(), this.location.getY(),this.location.getZ());
             IChatBaseComponent iChatBaseComponent = new ChatMessage(text);
-            iChatBaseComponent.getChatModifier().setBold(true);
-
             entity.setCustomName(iChatBaseComponent);
             entity.setCustomNameVisible(true);
             entity.setInvisible(true);
             entity.setNoGravity(false);
-            entitylist.add(entity);
+            entityList.add(entity);
             this.location.subtract(0, this.DISTANCE, 0);
             count++;
         }

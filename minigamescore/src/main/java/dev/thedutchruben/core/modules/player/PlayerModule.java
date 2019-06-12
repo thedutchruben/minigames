@@ -27,11 +27,11 @@ public class PlayerModule {
         playerLoader = new PlayerLoader();
     }
 
-    public MinigamesPlayer getMinigamesPlayer(Player player){
-        return getMinigamesPlayer(player.getUniqueId());
+    public static MinigamesPlayer getMinigamesPlayer(Player player){
+        return MiniGamesCore.getInstance().getPlayerModule().getMinigamesPlayer(player.getUniqueId());
     }
 
-    public MinigamesPlayer getMinigamesPlayer(UUID uuid){
+    public  MinigamesPlayer getMinigamesPlayer(UUID uuid){
         return minigamesPlayers.get(uuid);
     }
 

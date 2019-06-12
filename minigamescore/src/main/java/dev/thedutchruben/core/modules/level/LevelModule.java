@@ -10,16 +10,17 @@ public class LevelModule {
         registerCommand();
     }
 
-    public void registerCommand(){
+    public void registerCommand() {
         MiniGamesCore.getInstance().getCommand("level").setExecutor(new LevelCommand());
     }
 
-    public Level getLevel(int level){
-        for(Level level1 : MiniGamesCore.getInstance().getLevels()){
-            if(level1.getLevel() == level){
+    public Level getLevel(int level) {
+        for (Level level1 : MiniGamesCore.getInstance().getLevels()) {
+            if (level1.getLevel() == level) {
                 return level1;
             }
         }
         return null;
     }
+
 }

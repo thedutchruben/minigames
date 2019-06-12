@@ -19,7 +19,7 @@ public class GameLog {
 
     public GameLog(List<Log> data) {
         try {
-        this.gameId = InetAddress.getLocalHost().getHostName() + new Date().toString();
+        this.gameId = InetAddress.getLocalHost().getHostName() + " " + new Date().toString();
 
             this.servername = InetAddress.getLocalHost().getHostName();
         } catch (UnknownHostException e) {

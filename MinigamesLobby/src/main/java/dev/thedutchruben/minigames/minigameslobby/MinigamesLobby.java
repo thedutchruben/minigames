@@ -18,6 +18,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -39,7 +41,11 @@ public final class MinigamesLobby extends JavaPlugin {
         lobbyconfig = new Config(this,"config.yml");
         signConfig = new Config(this,"signs.yml");
 
-        new Game("lobby",GameState.LOBBY, GameType.MAIN_LOBBY,0,1000);
+        try {
+            new Game(InetAddress.getLocalHost().getHostName(),GameState.LOBBY, GameType.MAIN_LOBBY,0,1000);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         Game.getGame().setContinuGame(true);
         loadLobby();

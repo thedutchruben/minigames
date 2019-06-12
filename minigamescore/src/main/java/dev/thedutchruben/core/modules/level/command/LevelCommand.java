@@ -4,8 +4,11 @@ import dev.thedutchruben.core.framework.level.Level;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 
-public class LevelCommand implements CommandExecutor {
+import java.util.List;
+
+public class LevelCommand implements CommandExecutor , TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
             if(args.length >0){
@@ -29,5 +32,10 @@ public class LevelCommand implements CommandExecutor {
             commandSender.sendMessage("Level " + integer + " created");
             new Level(integer,1);
         }
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        return null;
     }
 }
