@@ -145,7 +145,11 @@ public class Game {
      * @return Location object for the lobby of the game
      */
     public Location getLobby() {
-        return lobby;
+        if(lobby != null) {
+            return lobby;
+        }else{
+         return Bukkit.getWorlds().get(0).getSpawnLocation();
+        }
     }
 
     /**

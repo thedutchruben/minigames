@@ -7,6 +7,7 @@ import dev.thedutchruben.core.framework.server.Game;
 import dev.thedutchruben.core.framework.server.GameState;
 import dev.thedutchruben.core.framework.server.GameType;
 import dev.thedutchruben.core.MiniGamesCore;
+import dev.thedutchruben.core.utils.Holograms;
 import dev.thedutchruben.thesearch.framework.map.Map;
 import dev.thedutchruben.thesearch.modules.game.GameModule;
 import dev.thedutchruben.thesearch.modules.player.PlayerModule;
@@ -41,6 +42,7 @@ public final class Thesearch extends JavaPlugin {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+
         playerModule = new PlayerModule();
         gameMode = new GameModule();
     }

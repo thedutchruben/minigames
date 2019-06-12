@@ -26,6 +26,8 @@ public class PlayerInteractListener implements Listener {
                 SearchPlayer searchPlayer = Thesearch.getInstance().getPlayerModule().getSearchPlayers().get(interactEvent.getPlayer().getUniqueId());
                 if(!searchPlayer.getLocations().contains(interactEvent.getClickedBlock().getLocation())){
                     searchPlayer.getLocations().add(interactEvent.getClickedBlock().getLocation());
+
+
                     MessageUtil.sendMessage(interactEvent.getPlayer(),ChatColor.GREEN + "Je hebt een head gevonden! zoek snel nog meer! (" + searchPlayer.getLocations().size() + " / " + Thesearch.getInstance().getMap().getAmmount()+ ")");
                         //todo add 1 coins
                     if(searchPlayer.getLocations().size() == Thesearch.getInstance().getMap().getAmmount()){

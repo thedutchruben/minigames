@@ -1,6 +1,7 @@
 package dev.thedutchruben.thesearch.modules.player.listeners;
 
 import dev.thedutchruben.core.framework.player.event.MinigamePlayerJoinEvent;
+import dev.thedutchruben.core.framework.server.Game;
 import dev.thedutchruben.thesearch.Thesearch;
 import dev.thedutchruben.thesearch.framework.player.SearchPlayer;
 import org.bukkit.event.EventHandler;
@@ -11,8 +12,9 @@ import java.util.ArrayList;
 public class PlayerJoinListener implements Listener {
 
     @EventHandler
-    public void onJoin(MinigamePlayerJoinEvent minigamePlayerJoinEvent){
-        Thesearch.getInstance().getPlayerModule().getSearchPlayers().put(minigamePlayerJoinEvent.getMinigamesPlayer().getUuid(),new SearchPlayer(minigamePlayerJoinEvent.getMinigamesPlayer().getUuid(),new ArrayList<>()));
+    public void onJoin(MinigamePlayerJoinEvent event){
+        event.getMinigamesPlayer().getBukkitPlayer().teleport(Game.getGame().getLobby());
+        Thesearch.getInstance().getPlayerModule().getSearchPlayers().put(event.getMinigamesPlayer().getUuid(),new SearchPlayer(event.getMinigamesPlayer().getUuid(),new ArrayList<>()));
 
     }
 }
