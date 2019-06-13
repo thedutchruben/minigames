@@ -1,5 +1,6 @@
 package dev.thedutchruben.thesearch.modules.game.listeners;
 
+import dev.thedutchruben.core.MiniGamesCore;
 import dev.thedutchruben.core.framework.server.events.GameEndEvent;
 import dev.thedutchruben.core.framework.server.events.GameStartEvent;
 import dev.thedutchruben.thesearch.Thesearch;
@@ -30,16 +31,11 @@ public class GameStartListener implements Listener {
             onlinePlayer.setWalkSpeed(0.3F);
             Thesearch.getInstance().getGameMode().getBossBar().addPlayer(onlinePlayer);
         }
+        MiniGamesCore.getInstance().getPlayerModule().getMinigamesPlayers().values().forEach(minigamesPlayer -> Thesearch.getInstance().getGameMode().setScoreboard(minigamesPlayer));
         Bukkit.getScheduler().runTaskTimerAsynchronously(Thesearch.getInstance(),new GameEndRunnable(),0,20);
 
     }
 
-    @EventHandler
-    public void onEnd(GameEndEvent event){
-        for (Location head : Thesearch.getInstance().getMap().getHeadLocations()) {
-            head.getBlock().setType(Material.AIR);
-        }
-    }
 
     public static void setSkullUrl(Block block) {
         block.setType(Material.PLAYER_HEAD);

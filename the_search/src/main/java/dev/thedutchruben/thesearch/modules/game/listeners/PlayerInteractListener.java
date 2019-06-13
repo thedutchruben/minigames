@@ -3,6 +3,7 @@ package dev.thedutchruben.thesearch.modules.game.listeners;
 import dev.thedutchruben.core.framework.server.Game;
 import dev.thedutchruben.core.framework.server.events.GameEndEvent;
 import dev.thedutchruben.core.MiniGamesCore;
+import dev.thedutchruben.core.utils.Holograms;
 import dev.thedutchruben.thesearch.Thesearch;
 import dev.thedutchruben.thesearch.framework.player.SearchPlayer;
 import dev.thedutchruben.core.utils.MessageUtil;
@@ -15,6 +16,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
+import java.util.Arrays;
+
 public class PlayerInteractListener implements Listener {
 
     @EventHandler
@@ -26,8 +29,10 @@ public class PlayerInteractListener implements Listener {
                 SearchPlayer searchPlayer = Thesearch.getInstance().getPlayerModule().getSearchPlayers().get(interactEvent.getPlayer().getUniqueId());
                 if(!searchPlayer.getLocations().contains(interactEvent.getClickedBlock().getLocation())){
                     searchPlayer.getLocations().add(interactEvent.getClickedBlock().getLocation());
+                    dev.thedutchruben.core.utils.Holograms holograms = new Holograms(Arrays.asList(ChatColor.GREEN + "✔"),interactEvent.getClickedBlock().getLocation());
 
-
+                    holograms.showPlayer(interactEvent.getPlayer());
+                    MiniGamesCore.getInstance().getPlayerModule().getMinigamesPlayers().values().forEach(minigamesPlayer -> Thesearch.getInstance().getGameMode().setScoreboard(minigamesPlayer));
                     MessageUtil.sendMessage(interactEvent.getPlayer(),ChatColor.GREEN + "Je hebt een head gevonden! zoek snel nog meer! (" + searchPlayer.getLocations().size() + " / " + Thesearch.getInstance().getMap().getAmmount()+ ")");
                         //todo add 1 coins
                     if(searchPlayer.getLocations().size() == Thesearch.getInstance().getMap().getAmmount()){
@@ -36,7 +41,6 @@ public class PlayerInteractListener implements Listener {
                         interactEvent.getPlayer().setPlayerListName("[%amount%]".replace("%amount%",searchPlayer.getLocations().size() + "") + interactEvent.getPlayer().getName());
                         //todo add 10 coins
                     }
-                    return;
                 }else{
                     MessageUtil.sendMessage(interactEvent.getPlayer(),ChatColor.RED + "Je hebt deze head al gevonden zoek snel een andere!");
 

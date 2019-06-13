@@ -1,6 +1,7 @@
 package dev.thedutchruben.thesearch.modules.game.runnables;
 
 import dev.thedutchruben.core.framework.server.Game;
+import dev.thedutchruben.core.utils.MessageUtil;
 import dev.thedutchruben.thesearch.Thesearch;
 import org.bukkit.Bukkit;
 
@@ -14,11 +15,11 @@ public class GameEndRunnable implements Runnable {
         System.out.println(timeleft * gameTime);
         Thesearch.getInstance().getGameMode().getBossBar().setProgress(timeleft * gameTime);
         if(gameTime == 120){
-            Bukkit.broadcastMessage("De game eindigd over 2 minuuten!");
+            MessageUtil.broadCast("De game eindigd over 2 minuuten!");
         }
 
         if(gameTime == 60){
-            Bukkit.broadcastMessage("De game eindigd over 1 minuut!");
+            MessageUtil.broadCast("De game eindigd over 1 minuut!");
         }
 
         if(gameTime == 0){

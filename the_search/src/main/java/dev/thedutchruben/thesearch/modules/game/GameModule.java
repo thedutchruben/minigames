@@ -1,5 +1,8 @@
 package dev.thedutchruben.thesearch.modules.game;
 
+import dev.thedutchruben.core.framework.player.MinigamesPlayer;
+import dev.thedutchruben.core.framework.server.Game;
+import dev.thedutchruben.core.utils.Scoreboard;
 import dev.thedutchruben.thesearch.Thesearch;
 import dev.thedutchruben.thesearch.framework.player.SearchPlayer;
 import dev.thedutchruben.thesearch.modules.game.listeners.GameStartListener;
@@ -47,4 +50,17 @@ public class GameModule {
     public BossBar getBossBar() {
         return bossBar;
     }
+
+    public void setScoreboard(MinigamesPlayer minigamesPlayer){
+        Scoreboard scoreboard = new Scoreboard(Game.getGame().getGameType().getDisplayName());
+        scoreboard.create(minigamesPlayer.getBukkitPlayer());
+        scoreboard.setLine(minigamesPlayer.getBukkitPlayer(),8,"Nummer 1 : ");
+        scoreboard.setLine(minigamesPlayer.getBukkitPlayer(),9,"" + getTopPlayers().next().getLocations().size());
+        scoreboard.setLine(minigamesPlayer.getBukkitPlayer(),10,"");
+        scoreboard.setLine(minigamesPlayer.getBukkitPlayer(),11,"Gevonden stukjes kaas :");
+        scoreboard.setLine(minigamesPlayer.getBukkitPlayer(),12,"" + Thesearch.getInstance().getPlayerModule().getSearchPlayers().get(minigamesPlayer.getUuid()).getLocations().size());
+        scoreboard.setLine(minigamesPlayer.getBukkitPlayer(),13,"");
+        scoreboard.setLine(minigamesPlayer.getBukkitPlayer(),14,"&8play.thedutchruben.dev");
+    }
+
 }
