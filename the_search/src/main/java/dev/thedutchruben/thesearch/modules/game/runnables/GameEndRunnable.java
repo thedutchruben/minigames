@@ -23,7 +23,7 @@ public class GameEndRunnable implements Runnable {
         }
 
         if(gameTime == 0){
-            Bukkit.getScheduler().runTask(Thesearch.getInstance(),() -> Bukkit.getPluginManager().callEvent(new dev.thedutchruben.core.framework.server.events.GameEndEvent(Game.getGame())));
+            Bukkit.getScheduler().runTask(Thesearch.getInstance(),() -> Bukkit.getPluginManager().callEvent(new dev.thedutchruben.core.framework.server.events.GameEndEvent(Game.getGame(),null)));
         }
         gameTime--;
 

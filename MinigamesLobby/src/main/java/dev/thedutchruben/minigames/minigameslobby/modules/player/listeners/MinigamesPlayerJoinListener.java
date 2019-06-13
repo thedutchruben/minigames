@@ -7,6 +7,7 @@ import dev.thedutchruben.core.utils.Scoreboard;
 import dev.thedutchruben.minigames.minigameslobby.MinigamesLobby;
 import dev.thedutchruben.core.utils.FireworkEffectPlayer;
 import dev.thedutchruben.core.utils.Utils;
+import dev.thedutchruben.minigames.minigameslobby.modules.hologram.HologramModule;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
@@ -26,8 +27,8 @@ public class MinigamesPlayerJoinListener implements Listener {
         Player player = Bukkit.getPlayer(event.getMinigamesPlayer().getUuid());
         player.setLevel(event.getMinigamesPlayer().getCommonData().getLevel());
         MinigamesLobby.getInstance().getPlayerModule().giveLobbyItems(event.getMinigamesPlayer().getBukkitPlayer());
-
-        MinigamesLobby.getInstance().getScoreboards().stream().filter(locationBoard -> locationBoard.getMaterial() == Material.AIR).findFirst().get().getScoreboard().create(player);
+        new HologramModule().setUpBasicStatsHologram(event.getMinigamesPlayer().getBukkitPlayer());
+       // MinigamesLobby.getInstance().getScoreboards().stream().filter(locationBoard -> locationBoard.getMaterial() == Material.AIR).findFirst().get().getScoreboard().create(player);
 
         Utils.circle(event.getMinigamesPlayer().getBukkitPlayer().getLocation(),
                 3,4,true ,true,2).forEach(location ->{

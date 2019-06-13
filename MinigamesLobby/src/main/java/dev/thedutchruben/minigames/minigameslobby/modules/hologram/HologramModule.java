@@ -23,12 +23,12 @@ public class HologramModule {
     public void setUpBasicStatsHologram(Player player){
         MinigamesPlayer minigamesPlayer = PlayerModule.getMinigamesPlayer(player);
         Holograms holograms = new Holograms(Arrays.asList(
-                MessageUtil.sendCenteredMessage("-----------> Stats <-----------"),
-                MessageUtil.sendCenteredMessage("Coins : " + minigamesPlayer.getEconomicData().getCoins()),
-                MessageUtil.sendCenteredMessage("Level : " + minigamesPlayer.getCommonData().getLevel()))
+                "-----------> Stats <-----------",
+                "Coins : " + minigamesPlayer.getEconomicData().getCoins(),
+                "Level : " + minigamesPlayer.getCommonData().getLevel())
 
-                ,new Location(Bukkit.getWorlds().get(0),0,0,0));
-        holograms.hidePlayer(player);
+                ,new Location(Bukkit.getWorlds().get(0),-1261,13,754));
+        holograms.showPlayer(player);
     }
 
     public void setUpTop10Wins(){

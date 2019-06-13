@@ -3,6 +3,7 @@ package dev.thedutchruben.core.modules.game.commands;
 import dev.thedutchruben.core.framework.server.Game;
 import dev.thedutchruben.core.framework.server.events.GameEndEvent;
 import dev.thedutchruben.core.modules.game.runnables.GameStartRunnable;
+import dev.thedutchruben.core.modules.player.PlayerModule;
 import dev.thedutchruben.core.utils.MessageUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -47,7 +48,7 @@ public class GameCommand implements CommandExecutor {
     }
 
     public void stop(CommandSender commandSender){
-        Bukkit.getServer().getPluginManager().callEvent(new GameEndEvent(Game.getGame()));
+        Bukkit.getServer().getPluginManager().callEvent(new GameEndEvent(Game.getGame(), PlayerModule.getMinigamesPlayer((Player) commandSender)));
         MessageUtil.broadCast("De game is geforcestopt");
     }
 }

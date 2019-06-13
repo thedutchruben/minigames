@@ -41,11 +41,9 @@ public final class MinigamesLobby extends JavaPlugin {
         lobbyconfig = new Config(this,"config.yml");
         signConfig = new Config(this,"signs.yml");
 
-        try {
-            new Game(InetAddress.getLocalHost().getHostName(),GameState.LOBBY, GameType.MAIN_LOBBY,0,1000);
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
+
+            new Game(GameState.LOBBY, GameType.MAIN_LOBBY,0,1000);
+
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         Game.getGame().setContinuGame(true);
         loadLobby();

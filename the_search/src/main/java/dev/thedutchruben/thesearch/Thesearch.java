@@ -33,7 +33,7 @@ public final class Thesearch extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         instance = this;
-        new Game("thesearch", GameState.LOBBY, GameType.THE_SEARCH,1,10);
+        new Game(GameState.LOBBY, GameType.THE_SEARCH,1,10);
         mongoCollection = MiniGamesCore.getInstance().getMongoDb().getMongoDatabase().getCollection("the_search");
         try {
             map = getMapDB().get();
