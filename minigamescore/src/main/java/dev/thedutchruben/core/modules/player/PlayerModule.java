@@ -7,6 +7,7 @@ import dev.thedutchruben.core.MiniGamesCore;
 import dev.thedutchruben.core.modules.player.listeners.PlayerJoinListener;
 import dev.thedutchruben.core.modules.player.listeners.PlayerQuitListener;
 import lombok.Getter;
+import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -32,6 +33,7 @@ public class PlayerModule {
     }
 
     public  MinigamesPlayer getMinigamesPlayer(UUID uuid){
+        Validate.notEmpty(minigamesPlayers,"There are no MinigamesPlayers");
         return minigamesPlayers.get(uuid);
     }
 
@@ -40,7 +42,8 @@ public class PlayerModule {
             Method method = clazz.getMethod("create", MinigamesPlayer.class);
             return (D) method.invoke(null, player);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return null;
         }
     }
 }
