@@ -5,6 +5,7 @@ import dev.thedutchruben.core.framework.server.Game;
 import dev.thedutchruben.core.utils.Scoreboard;
 import dev.thedutchruben.thesearch.Thesearch;
 import dev.thedutchruben.thesearch.framework.player.SearchPlayer;
+import dev.thedutchruben.thesearch.modules.game.listeners.GameEndListener;
 import dev.thedutchruben.thesearch.modules.game.listeners.GameStartListener;
 import dev.thedutchruben.thesearch.modules.game.listeners.HeadPlaceListener;
 import dev.thedutchruben.thesearch.modules.game.listeners.PlayerInteractListener;
@@ -35,6 +36,7 @@ public class GameModule {
         pluginManager.registerEvents(new HeadPlaceListener(), Thesearch.getInstance());
         pluginManager.registerEvents(new GameStartListener(), Thesearch.getInstance());
         pluginManager.registerEvents(new PlayerInteractListener(), Thesearch.getInstance());
+        pluginManager.registerEvents(new GameEndListener(),Thesearch.getInstance());
     }
 
 

@@ -34,13 +34,13 @@ public class PlayerInteractListener implements Listener {
                     dev.thedutchruben.core.utils.Holograms holograms = new Holograms(Arrays.asList(ChatColor.GREEN + "✔"),event.getClickedBlock().getLocation());
                     event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP,20,2);
                     holograms.showPlayer(event.getPlayer());
+                    event.getPlayer().setPlayerListName("[%amount%]".replace("%amount%",searchPlayer.getLocations().size() + "") + event.getPlayer().getName());
                     MiniGamesCore.getInstance().getPlayerModule().getMinigamesPlayers().values().forEach(minigamesPlayer -> Thesearch.getInstance().getGameMode().setScoreboard(minigamesPlayer));
                     MessageUtil.sendMessage(event.getPlayer(),ChatColor.GREEN + "Je hebt een head gevonden! zoek snel nog meer! (" + searchPlayer.getLocations().size() + " / " + Thesearch.getInstance().getMap().getAmmount()+ ")");
                         //todo add 1 coins
                     if(searchPlayer.getLocations().size() == Thesearch.getInstance().getMap().getAmmount()){
                         Bukkit.broadcastMessage(ChatColor.GOLD + event.getPlayer().getName() + " heeft gewonnen!");
                         Bukkit.getServer().getPluginManager().callEvent(new GameEndEvent(Game.getGame(), PlayerModule.getMinigamesPlayer(event.getPlayer())));
-                        event.getPlayer().setPlayerListName("[%amount%]".replace("%amount%",searchPlayer.getLocations().size() + "") + event.getPlayer().getName());
                         //todo add 10 coins
                     }
                 }else{
