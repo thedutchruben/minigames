@@ -29,4 +29,8 @@ public class CommonData  implements PlayerData {
     public int getXp() {
         return xp;
     }
+
+    public void addXp(int xp){
+        this.xp += xp;
+    }
 }

@@ -1,10 +1,11 @@
 package dev.thedutchruben.core.framework.economic.events;
 
 import dev.thedutchruben.core.framework.economic.EcoType;
+import dev.thedutchruben.core.framework.player.MinigamesPlayer;
 import lombok.NonNull;
 
 public class XpAddEvent extends EcoEvent{
-    public XpAddEvent(@NonNull double ammount) {
-        super(ammount, EcoType.XP);
+    public XpAddEvent(@NonNull double ammount, MinigamesPlayer minigamesPlayer) {
+        super(ammount, EcoType.XP,minigamesPlayer);
     }
 }
