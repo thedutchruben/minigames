@@ -63,10 +63,6 @@ public final class Thesearch extends JavaPlugin {
         return instance;
     }
 
-
-
-
-
     public CompletableFuture<Map> getMapDB(){
         return CompletableFuture.supplyAsync(() -> {
             return mongoCollection.find(eq("_id", Bukkit.getWorlds().get(0).getName()));
