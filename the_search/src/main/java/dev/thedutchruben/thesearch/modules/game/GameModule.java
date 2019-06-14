@@ -41,10 +41,10 @@ public class GameModule {
 
 
 
-    public Iterator<SearchPlayer> getTopPlayers(){
-       return Thesearch.getInstance().getPlayerModule().getSearchPlayers().values().stream().
+    public SearchPlayer[] getTopPlayers(){
+       return (SearchPlayer[]) Thesearch.getInstance().getPlayerModule().getSearchPlayers().values().stream().
                limit(5).
-                sorted((o1, o2) -> Integer.valueOf(o1.getLocations().size()).compareTo(Integer.valueOf(o2.getLocations().size()))).iterator();
+                sorted((o1, o2) -> Integer.valueOf(o1.getLocations().size()).compareTo(Integer.valueOf(o2.getLocations().size()))).toArray();
     }
 
 
@@ -57,7 +57,7 @@ public class GameModule {
         Scoreboard scoreboard = new Scoreboard(Game.getGame().getGameType().getDisplayName());
         scoreboard.create(minigamesPlayer.getBukkitPlayer());
         scoreboard.setLine(minigamesPlayer.getBukkitPlayer(),8,"Nummer 1 : ");
-        scoreboard.setLine(minigamesPlayer.getBukkitPlayer(),9,"" + getTopPlayers().next().getLocations().size());
+        scoreboard.setLine(minigamesPlayer.getBukkitPlayer(),9,"" + getTopPlayers()[0].getLocations().size());
         scoreboard.setLine(minigamesPlayer.getBukkitPlayer(),10,"");
         scoreboard.setLine(minigamesPlayer.getBukkitPlayer(),11,"Gevonden stukjes kaas :");
         scoreboard.setLine(minigamesPlayer.getBukkitPlayer(),12,"" + Thesearch.getInstance().getPlayerModule().getSearchPlayers().get(minigamesPlayer.getUuid()).getLocations().size());
