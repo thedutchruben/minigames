@@ -31,17 +31,10 @@ public class GameStartListener implements Listener {
             onlinePlayer.setWalkSpeed(0.3F);
             Thesearch.getInstance().getGameMode().getBossBar().addPlayer(onlinePlayer);
         }
-        MiniGamesCore.getInstance().getPlayerModule().getMinigamesPlayers().values().forEach(minigamesPlayer -> Thesearch.getInstance().getGameMode().setScoreboard(minigamesPlayer));
+        MiniGamesCore.getInstance().getPlayerModule().getMinigamesPlayers().values().forEach(minigamesPlayer -> Thesearch.getInstance().getGameMode().createScoreboard(minigamesPlayer));
         Bukkit.getScheduler().runTaskTimerAsynchronously(Thesearch.getInstance(),new GameEndRunnable(),0,20);
 
     }
 
-
-    public static void setSkullUrl(Block block) {
-        block.setType(Material.PLAYER_HEAD);
-        Skull skullData = (Skull)block.getState();
-
-        block.getState().update(true);
-    }
 
 }

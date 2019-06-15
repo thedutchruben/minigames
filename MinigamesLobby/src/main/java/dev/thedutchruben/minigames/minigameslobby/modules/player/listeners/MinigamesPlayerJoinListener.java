@@ -1,23 +1,14 @@
 package dev.thedutchruben.minigames.minigameslobby.modules.player.listeners;
 
-import dev.thedutchruben.core.framework.player.MinigamesPlayer;
 import dev.thedutchruben.core.framework.player.event.MinigamePlayerJoinEvent;
-import dev.thedutchruben.core.utils.Holograms;
-import dev.thedutchruben.core.utils.Scoreboard;
 import dev.thedutchruben.minigames.minigameslobby.MinigamesLobby;
-import dev.thedutchruben.core.utils.FireworkEffectPlayer;
 import dev.thedutchruben.core.utils.Utils;
 import dev.thedutchruben.minigames.minigameslobby.modules.hologram.HologramModule;
 import org.bukkit.Bukkit;
-import org.bukkit.Color;
-import org.bukkit.FireworkEffect;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-
-import java.util.Arrays;
 
 public class MinigamesPlayerJoinListener implements Listener {
 

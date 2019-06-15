@@ -7,9 +7,7 @@ import dev.thedutchruben.core.MiniGamesCore;
 import dev.thedutchruben.core.framework.server.Game;
 import dev.thedutchruben.core.framework.server.GameState;
 import dev.thedutchruben.core.framework.server.GameType;
-import dev.thedutchruben.core.utils.Scoreboard;
 import dev.thedutchruben.minigames.minigameslobby.framework.scoreboard.LocationBoard;
-import dev.thedutchruben.minigames.minigameslobby.framework.serversign.ServerSign;
 import dev.thedutchruben.minigames.minigameslobby.modules.player.PlayerModule;
 import dev.thedutchruben.minigames.minigameslobby.modules.serversigns.ServersignModule;
 import dev.thedutchruben.core.utils.Config;
@@ -18,8 +16,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;

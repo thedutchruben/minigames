@@ -23,11 +23,11 @@ public class GameCommand implements CommandExecutor {
 
 
     public void checkArgs(CommandSender commandSender,String args){
-        switch (args){
+        switch (args.toLowerCase()){
             case "forcestart":
                 forceStart(commandSender);
                 break;
-            case "setSpawn":
+            case "setspawn":
                 setSpawn((Player) commandSender);
                 break;
             case "endgame":
@@ -44,6 +44,8 @@ public class GameCommand implements CommandExecutor {
 
     public void setSpawn(Player player){
         Bukkit.getWorlds().get(0).setSpawnLocation(player.getLocation());
+        Game.getGame().setLobby(player.getLocation());
+        Game.getGame().save();
         MessageUtil.sendMessage(player,"Spawn is gezet!");
     }
 

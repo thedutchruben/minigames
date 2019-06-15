@@ -17,7 +17,6 @@ public class Holograms {
     private List<EntityArmorStand> entityList = new ArrayList<EntityArmorStand>();
     private List<String> text;
     private Location location;
-    private double DISTANCE = 0.25D;
     int count;
 
     public Holograms(List<String> text, Location location) {
@@ -88,12 +87,11 @@ public class Holograms {
             entity.setInvisible(true);
             entity.setNoGravity(false);
             entityList.add(entity);
-            this.location.subtract(0, this.DISTANCE, 0);
             count++;
         }
 
         for (int i = 0; i < count; i++) {
-            this.location.add(0, this.DISTANCE, 0);
+            this.location.add(0, 0.10, 0);
         }
         this.count = 0;
     }
