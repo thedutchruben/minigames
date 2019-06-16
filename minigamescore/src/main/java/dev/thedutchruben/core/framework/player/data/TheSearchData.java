@@ -1,6 +1,5 @@
 package dev.thedutchruben.core.framework.player.data;
 
-import dev.thedutchruben.core.framework.level.Level;
 import dev.thedutchruben.core.framework.player.MinigamesPlayer;
 import dev.thedutchruben.core.framework.player.PlayerData;
 import lombok.AllArgsConstructor;
@@ -33,6 +32,22 @@ public class TheSearchData  implements PlayerData {
 
     public int getGamesWon() {
         return gamesWon;
+    }
+
+    public void setLastTimePlayed(Date lastTimePlayed) {
+        this.lastTimePlayed = lastTimePlayed;
+    }
+
+    public void setGamesPlayed(int gamesPlayed) {
+        this.gamesPlayed = gamesPlayed;
+    }
+
+    public void setTotalHeadsFound(int totalHeadsFound) {
+        this.totalHeadsFound = totalHeadsFound;
+    }
+
+    public void setGamesWon(int gamesWon) {
+        this.gamesWon = gamesWon;
     }
 }
 

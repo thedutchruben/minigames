@@ -1,9 +1,9 @@
 package dev.thedutchruben.core.modules.player;
 
+import dev.thedutchruben.core.MiniGamesCore;
 import dev.thedutchruben.core.framework.player.MinigamesPlayer;
 import dev.thedutchruben.core.framework.player.PlayerData;
 import dev.thedutchruben.core.framework.player.PlayerLoader;
-import dev.thedutchruben.core.MiniGamesCore;
 import dev.thedutchruben.core.modules.player.listeners.PlayerJoinListener;
 import dev.thedutchruben.core.modules.player.listeners.PlayerQuitListener;
 import lombok.Getter;

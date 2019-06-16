@@ -1,13 +1,12 @@
 package dev.thedutchruben.thesearch.modules.game.listeners;
 
+import dev.thedutchruben.core.MiniGamesCore;
 import dev.thedutchruben.core.framework.server.Game;
 import dev.thedutchruben.core.framework.server.events.GameEndEvent;
-import dev.thedutchruben.core.MiniGamesCore;
 import dev.thedutchruben.core.modules.player.PlayerModule;
-import dev.thedutchruben.core.utils.Holograms;
+import dev.thedutchruben.core.utils.MessageUtil;
 import dev.thedutchruben.thesearch.Thesearch;
 import dev.thedutchruben.thesearch.framework.player.SearchPlayer;
-import dev.thedutchruben.core.utils.MessageUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -17,8 +16,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-
-import java.util.Arrays;
 
 public class PlayerInteractListener implements Listener {
 
@@ -35,17 +32,13 @@ public class PlayerInteractListener implements Listener {
                 } else {
 
                     if (!searchPlayer.getLocations().contains(event.getClickedBlock().getLocation())) {
-                        searchPlayer.getLocations().add(event.getClickedBlock().getLocation());
-                        dev.thedutchruben.core.utils.Holograms holograms = new Holograms(
-                                Arrays.asList(ChatColor.GREEN + "✔")
-                                , event.getClickedBlock().getLocation());
                         event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 20, 2);
-                        holograms.showPlayer(event.getPlayer());
-                        event.getPlayer().setPlayerListName("[%amount%]".replace("%amount%", searchPlayer.getLocations().size() + "") + event.getPlayer().getName());
-                        MiniGamesCore.getInstance().getPlayerModule().getMinigamesPlayers().values().forEach(minigamesPlayer -> Thesearch.getInstance().getGameMode().setScoreboard(minigamesPlayer));
-                        MessageUtil.sendMessage(event.getPlayer(), ChatColor.GREEN + "Je hebt een head gevonden! zoek snel nog meer! (" + searchPlayer.getLocations().size() + " / " + Thesearch.getInstance().getMap().getAmmount() + ")");
+                        event.getPlayer().setPlayerListName("[%amount%]".replace("%amount%", searchPlayer.getLocations().size() + 1  + "") + event.getPlayer().getName());
+                        MiniGamesCore.getInstance().getPlayerModule().getMinigamesPlayers().values().forEach(minigamesPlayer -> Thesearch.getInstance().getGameMode().createScoreboard(minigamesPlayer));
+                        MessageUtil.sendMessage(event.getPlayer(), ChatColor.GREEN + "Je hebt een head gevonden! zoek snel nog meer! (" + searchPlayer.getLocations().size() + 1 + " / " + Thesearch.getInstance().getMap().getAmmount() + ")");
                         //todo add 1 coins
-                        if (searchPlayer.getLocations().size() == Thesearch.getInstance().getMap().getAmmount()) {
+                        searchPlayer.getLocations().add(event.getClickedBlock().getLocation());
+                        if (searchPlayer.getLocations().size() + 1  == Thesearch.getInstance().getMap().getAmmount()) {
                             Bukkit.getServer().getPluginManager().callEvent(new GameEndEvent(Game.getGame(), PlayerModule.getMinigamesPlayer(event.getPlayer())));
                             //todo add 10 coins
                         }

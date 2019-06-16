@@ -50,22 +50,11 @@ public class GameModule {
 
     public void createScoreboard(MinigamesPlayer minigamesPlayer){
         BPlayerBoard board = Netherboard.instance().createBoard(minigamesPlayer.getBukkitPlayer(), Game.getGame().getGameType().getDisplayName());
-        board.set("&fStukjes kaas gevonden:",3);
-        board.set("&7" +Thesearch.getInstance().getPlayerModule().getSearchPlayers().get(minigamesPlayer.getUuid()).getLocations().size(),2);
+        board.set("&8Stukjes kaas gevonden:",3);
+        board.set("&f" +Thesearch.getInstance().getPlayerModule().getSearchPlayers().get(minigamesPlayer.getUuid()).getLocations().size(),2);
         board.set(" ",1);
-        board.set("&8play.thedutchruben.dev",0);
+        board.set("&7play.thedutchruben.dev",0);
     }
 
-    public void setScoreboard(MinigamesPlayer minigamesPlayer){
-//        Scoreboard scoreboard = new Scoreboard(Game.getGame().getGameType().getDisplayName());
-//        scoreboard.create(minigamesPlayer.getBukkitPlayer());
-//        scoreboard.setLine(minigamesPlayer.getBukkitPlayer(),8,"Nummer 1 : ");
-//        scoreboard.setLine(minigamesPlayer.getBukkitPlayer(),9,"" + getTopPlayers()[0].getLocations().size());
-//        scoreboard.setLine(minigamesPlayer.getBukkitPlayer(),10,"");
-//        scoreboard.setLine(minigamesPlayer.getBukkitPlayer(),11,"Gevonden stukjes kaas :");
-//        scoreboard.setLine(minigamesPlayer.getBukkitPlayer(),12,"" + Thesearch.getInstance().getPlayerModule().getSearchPlayers().get(minigamesPlayer.getUuid()).getLocations().size());
-//        scoreboard.setLine(minigamesPlayer.getBukkitPlayer(),13,"");
-//        scoreboard.setLine(minigamesPlayer.getBukkitPlayer(),14,"&8play.thedutchruben.dev");
-    }
 
 }

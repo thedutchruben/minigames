@@ -1,20 +1,19 @@
 package dev.thedutchruben.core.framework.scoreboard;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 public class BPlayerBoard implements PlayerBoard<String, Integer, String> {
 
 
-    private Player player;
+    private transient Player player;
     private Scoreboard scoreboard;
 
     private String name;
@@ -26,14 +25,27 @@ public class BPlayerBoard implements PlayerBoard<String, Integer, String> {
 
     private boolean deleted = false;
 
-    public BPlayerBoard(Player player, String name) {
-        this(player, null, name);
+    public BPlayerBoard(String name) {
+        this(null, name);
     }
 
-    public BPlayerBoard(Player player, Scoreboard scoreboard, String name) {
-        this.player = player;
+    public BPlayerBoard(Scoreboard scoreboard, String name1) {
+        String name = ChatColor.translateAlternateColorCodes('&',name1);
         this.scoreboard = scoreboard;
+        this.name = name;
 
+    }
+
+    @Override
+    public String get(Integer score) {
+        if(this.deleted)
+            throw new IllegalStateException("The PlayerBoard is deleted!");
+
+        return this.lines.get(score);
+    }
+
+    public void setPlayer(Player player){
+        this.player = player;
         if(this.scoreboard == null) {
             Scoreboard sb = player.getScoreboard();
 
@@ -42,8 +54,6 @@ public class BPlayerBoard implements PlayerBoard<String, Integer, String> {
 
             this.scoreboard = sb;
         }
-
-        this.name = name;
 
         String subName = player.getName().length() <= 14
                 ? player.getName()
@@ -68,15 +78,8 @@ public class BPlayerBoard implements PlayerBoard<String, Integer, String> {
     }
 
     @Override
-    public String get(Integer score) {
-        if(this.deleted)
-            throw new IllegalStateException("The PlayerBoard is deleted!");
-
-        return this.lines.get(score);
-    }
-
-    @Override
-    public void set(String name, Integer score) {
+    public void set(String name1, Integer score) {
+        String name = ChatColor.translateAlternateColorCodes('&',name1);
         if(this.deleted)
             throw new IllegalStateException("The PlayerBoard is deleted!");
 

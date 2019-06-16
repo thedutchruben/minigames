@@ -2,18 +2,24 @@ package dev.thedutchruben.minigames.minigameslobby.modules.player;
 
 import dev.thedutchruben.core.MiniGamesCore;
 import dev.thedutchruben.core.utils.GUIClass;
-import dev.thedutchruben.minigames.minigameslobby.MinigamesLobby;
-import dev.thedutchruben.minigames.minigameslobby.modules.player.listeners.MinigamesPlayerJoinListener;
 import dev.thedutchruben.core.utils.ItemBuilder;
+import dev.thedutchruben.minigames.minigameslobby.MinigamesLobby;
+import dev.thedutchruben.minigames.minigameslobby.framework.player.LobbyPlayer;
+import dev.thedutchruben.minigames.minigameslobby.modules.player.listeners.MinigamesPlayerJoinListener;
 import dev.thedutchruben.minigames.minigameslobby.modules.player.listeners.PlayerInteractListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class PlayerModule {
+    private Map<UUID, LobbyPlayer> lobbyPlayerMap;
     public PlayerModule(){
+        lobbyPlayerMap = new HashMap<>();
         Bukkit.getPluginManager().registerEvents(new MinigamesPlayerJoinListener(), MinigamesLobby.getInstance());
         Bukkit.getPluginManager().registerEvents(new PlayerInteractListener(), MinigamesLobby.getInstance());
 
@@ -36,6 +42,11 @@ public class PlayerModule {
                 .lore(ChatColor.GRAY + "XP : " + ChatColor.WHITE +MiniGamesCore.getInstance().getPlayerModule().getMinigamesPlayer(player).getCommonData().getXp())
                 .skullOwner(player.getName())
                 .name(player.getName()).make(),13);
+
         return guiClass;
+    }
+
+    public Map<UUID, LobbyPlayer> getLobbyPlayerMap() {
+        return lobbyPlayerMap;
     }
 }

@@ -6,11 +6,10 @@ import com.google.gson.LongSerializationPolicy;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoDatabase;
-
+import dev.thedutchruben.core.MiniGamesCore;
 import dev.thedutchruben.core.framework.database.adabters.DataMapAdapter;
 import dev.thedutchruben.core.framework.database.adabters.ItemMetaAdapter;
 import dev.thedutchruben.core.framework.database.adabters.LocationAdapter;
-import dev.thedutchruben.core.MiniGamesCore;
 import dev.thedutchruben.core.framework.player.DataMap;
 import dev.thedutchruben.core.utils.Config;
 import lombok.Getter;

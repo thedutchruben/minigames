@@ -7,13 +7,14 @@ import org.bukkit.Bukkit;
 
 public class GameEndRunnable implements Runnable {
 
-    private int gameTime = 300;
+    private float gameTime = 300;
 
     @Override
     public void run() {
         float timeleft = (1/ 300);
         System.out.println(timeleft * gameTime);
         Thesearch.getInstance().getGameMode().getBossBar().setProgress(timeleft * gameTime);
+
         if(gameTime == 120){
             MessageUtil.broadCast("De game eindigd over 2 minuuten!");
         }

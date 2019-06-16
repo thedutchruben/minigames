@@ -1,7 +1,5 @@
 package dev.thedutchruben.core.framework.player.data;
 
-import dev.thedutchruben.core.MiniGamesCore;
-import dev.thedutchruben.core.framework.level.Level;
 import dev.thedutchruben.core.framework.player.MinigamesPlayer;
 import dev.thedutchruben.core.framework.player.PlayerData;
 import lombok.AllArgsConstructor;

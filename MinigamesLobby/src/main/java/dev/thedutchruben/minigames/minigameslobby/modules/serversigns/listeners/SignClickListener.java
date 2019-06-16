@@ -1,8 +1,8 @@
 package dev.thedutchruben.minigames.minigameslobby.modules.serversigns.listeners;
 
 import dev.thedutchruben.core.framework.server.Game;
-import dev.thedutchruben.minigames.minigameslobby.MinigamesLobby;
 import dev.thedutchruben.core.utils.BungeeUtil;
+import dev.thedutchruben.minigames.minigameslobby.MinigamesLobby;
 import org.bukkit.Material;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;

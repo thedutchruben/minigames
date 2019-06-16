@@ -1,14 +1,16 @@
 package dev.thedutchruben.minigames.minigameslobby.framework.scoreboard;
 
+import dev.thedutchruben.core.framework.scoreboard.BPlayerBoard;
+import dev.thedutchruben.core.framework.scoreboard.PlayerBoard;
 import org.bukkit.Material;
 
 
 public class LocationBoard {
     private String name;
     private Material material;
-    private Scoreboard scoreboard;
+    private dev.thedutchruben.core.framework.scoreboard.BPlayerBoard scoreboard;
 
-    public LocationBoard(String name, Material material, Scoreboard scoreboard) {
+    public LocationBoard(String name, Material material, BPlayerBoard scoreboard) {
         this.name = name;
         this.material = material;
         this.scoreboard = scoreboard;
@@ -22,7 +24,7 @@ public class LocationBoard {
         return material;
     }
 
-    public Scoreboard getScoreboard() {
+    public BPlayerBoard getScoreboard() {
         return scoreboard;
     }
 }

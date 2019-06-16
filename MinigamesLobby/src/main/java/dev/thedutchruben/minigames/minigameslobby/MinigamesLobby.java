@@ -4,13 +4,15 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.Block;
 import com.mongodb.client.model.UpdateOptions;
 import dev.thedutchruben.core.MiniGamesCore;
+import dev.thedutchruben.core.framework.scoreboard.BPlayerBoard;
 import dev.thedutchruben.core.framework.server.Game;
 import dev.thedutchruben.core.framework.server.GameState;
 import dev.thedutchruben.core.framework.server.GameType;
+import dev.thedutchruben.core.utils.Config;
 import dev.thedutchruben.minigames.minigameslobby.framework.scoreboard.LocationBoard;
 import dev.thedutchruben.minigames.minigameslobby.modules.player.PlayerModule;
 import dev.thedutchruben.minigames.minigameslobby.modules.serversigns.ServersignModule;
-import dev.thedutchruben.core.utils.Config;
+import org.bson.BsonContextType;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -38,7 +40,7 @@ public final class MinigamesLobby extends JavaPlugin {
         signConfig = new Config(this,"signs.yml");
 
 
-            new Game(GameState.LOBBY, GameType.MAIN_LOBBY,0,1000);
+        new Game(GameState.LOBBY, GameType.MAIN_LOBBY,0,1000);
 
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         Game.getGame().setContinuGame(true);
@@ -46,9 +48,11 @@ public final class MinigamesLobby extends JavaPlugin {
         playerModule = new PlayerModule();
         serversignModule = new ServersignModule();
         scoreboards = getScoreboards();
-        Scoreboard scoreboard = new Scoreboard("SCOREBOARD");
+        BPlayerBoard playerBoard = new BPlayerBoard("MinigamesLobby");
+        LocationBoard locationBoard = new LocationBoard("Default", Material.AIR,playerBoard);
 
-        saveScoreboard(new LocationBoard("DefaultBoard", Material.AIR,scoreboard));
+        scoreboards.add(locationBoard);
+        saveScoreboard(locationBoard);
     }
 
     @Override
@@ -57,7 +61,7 @@ public final class MinigamesLobby extends JavaPlugin {
     }
 
     public void loadLobby() {
-            Game.getGame().setLobby(Bukkit.getWorlds().get(0).getSpawnLocation());
+        Game.getGame().setLobby(Bukkit.getWorlds().get(0).getSpawnLocation());
     }
 
 

@@ -1,7 +1,7 @@
 package dev.thedutchruben.core.modules.player.listeners;
 
-import dev.thedutchruben.core.framework.player.event.MinigamePlayerQuitEvent;
 import dev.thedutchruben.core.MiniGamesCore;
+import dev.thedutchruben.core.framework.player.event.MinigamePlayerQuitEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

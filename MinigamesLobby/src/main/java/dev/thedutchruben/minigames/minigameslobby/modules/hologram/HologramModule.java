@@ -3,31 +3,40 @@ package dev.thedutchruben.minigames.minigameslobby.modules.hologram;
 import dev.thedutchruben.core.framework.player.MinigamesPlayer;
 import dev.thedutchruben.core.modules.player.PlayerModule;
 import dev.thedutchruben.core.utils.Holograms;
-import dev.thedutchruben.core.utils.MessageUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
 public class HologramModule {
 
-    private List<Holograms> holograms;
 
     public void setUpHolos(Player player){
         setUpBasicStatsHologram(player);
+        setTheSearchHoloGram(player);
     }
 
 
     public void setUpBasicStatsHologram(Player player){
         MinigamesPlayer minigamesPlayer = PlayerModule.getMinigamesPlayer(player);
-        Holograms holograms = new Holograms(Arrays.asList(
-                "-----------> Stats <-----------",
+        Holograms holograms = new Holograms(Arrays.asList( "<---------> Stats <--------->",
                 "Coins : " + minigamesPlayer.getEconomicData().getCoins(),
-                "Level : " + minigamesPlayer.getCommonData().getLevel())
+                "Level : " + minigamesPlayer.getCommonData().getLevel(),
+                "Online time : " + minigamesPlayer.getCommonData().getTotalPlayTime())
+               ,(new Location(Bukkit.getWorlds().get(0),-1261.450,15,754.207)));
+        holograms.showPlayer(player);
+    }
 
-                ,new Location(Bukkit.getWorlds().get(0),-1261,13,754));
+    public void setTheSearchHoloGram(Player player){
+        MinigamesPlayer minigamesPlayer = PlayerModule.getMinigamesPlayer(player);
+        Holograms holograms = new Holograms(Arrays.asList(
+                "<---------> The Search Stats <--------->",
+                "Gespeelde games : " + minigamesPlayer.getTheSearchData().getGamesPlayed(),
+                "Wins : " + minigamesPlayer.getTheSearchData().getGamesWon())
+                ,new Location(Bukkit.getWorlds().get(0),-1239,15,745) );
         holograms.showPlayer(player);
     }
 

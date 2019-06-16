@@ -43,7 +43,7 @@ public class Netherboard {
     public BPlayerBoard createBoard(Player player, Scoreboard scoreboard, String name) {
         deleteBoard(player);
 
-        BPlayerBoard board = new BPlayerBoard(player, scoreboard, name);
+        BPlayerBoard board = new BPlayerBoard(scoreboard, name);
 
         boards.put(player, board);
         return board;

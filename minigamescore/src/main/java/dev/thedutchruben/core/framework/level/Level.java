@@ -2,9 +2,6 @@ package dev.thedutchruben.core.framework.level;
 
 import dev.thedutchruben.core.MiniGamesCore;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Level {
 
     private int level;

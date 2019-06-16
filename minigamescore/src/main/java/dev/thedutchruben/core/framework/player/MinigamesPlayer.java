@@ -3,6 +3,7 @@ package dev.thedutchruben.core.framework.player;
 
 import dev.thedutchruben.core.framework.player.data.CommonData;
 import dev.thedutchruben.core.framework.player.data.EcoData;
+import dev.thedutchruben.core.framework.player.data.TheSearchData;
 import dev.thedutchruben.core.modules.player.PlayerModule;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -53,6 +54,10 @@ public class MinigamesPlayer {
 
     public EcoData getEconomicData(){
         return getData(EcoData.class);
+    }
+
+    public TheSearchData getTheSearchData(){
+        return getData(TheSearchData.class);
     }
 
 

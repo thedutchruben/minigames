@@ -1,21 +1,19 @@
 package dev.thedutchruben.thesearch.modules.game.listeners;
 
 import dev.thedutchruben.core.MiniGamesCore;
-import dev.thedutchruben.core.framework.server.events.GameEndEvent;
 import dev.thedutchruben.core.framework.server.events.GameStartEvent;
+import dev.thedutchruben.core.utils.SkullCreator;
 import dev.thedutchruben.thesearch.Thesearch;
 import dev.thedutchruben.thesearch.framework.map.Map;
 import dev.thedutchruben.thesearch.modules.game.runnables.GameEndRunnable;
-import dev.thedutchruben.core.utils.SkullCreator;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.block.Skull;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
+import java.util.Date;
 import java.util.List;
 
 public class GameStartListener implements Listener {
@@ -31,7 +29,12 @@ public class GameStartListener implements Listener {
             onlinePlayer.setWalkSpeed(0.3F);
             Thesearch.getInstance().getGameMode().getBossBar().addPlayer(onlinePlayer);
         }
-        MiniGamesCore.getInstance().getPlayerModule().getMinigamesPlayers().values().forEach(minigamesPlayer -> Thesearch.getInstance().getGameMode().createScoreboard(minigamesPlayer));
+        MiniGamesCore.getInstance().getPlayerModule().getMinigamesPlayers().values().forEach(minigamesPlayer ->{
+            Thesearch.getInstance().getGameMode().createScoreboard(minigamesPlayer);
+            minigamesPlayer.getTheSearchData().setLastTimePlayed(new Date());
+            minigamesPlayer.getTheSearchData().setGamesPlayed(minigamesPlayer.getTheSearchData().getGamesPlayed() + 1);
+
+        });
         Bukkit.getScheduler().runTaskTimerAsynchronously(Thesearch.getInstance(),new GameEndRunnable(),0,20);
 
     }

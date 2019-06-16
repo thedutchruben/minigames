@@ -1,9 +1,9 @@
 package dev.thedutchruben.core.modules.game.listener;
 
+import dev.thedutchruben.core.MiniGamesCore;
 import dev.thedutchruben.core.framework.player.event.MinigamePlayerJoinEvent;
 import dev.thedutchruben.core.framework.server.Game;
 import dev.thedutchruben.core.framework.server.GameState;
-import dev.thedutchruben.core.MiniGamesCore;
 import dev.thedutchruben.core.modules.game.runnables.GameStartRunnable;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;

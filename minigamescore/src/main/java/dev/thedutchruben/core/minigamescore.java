@@ -1,17 +1,17 @@
 package dev.thedutchruben.core;
 
+import dev.thedutchruben.core.framework.database.MongoDb;
 import dev.thedutchruben.core.framework.level.Level;
 import dev.thedutchruben.core.framework.level.LevelLoader;
-import dev.thedutchruben.core.modules.level.LevelModule;
-import dev.thedutchruben.core.utils.BungeeUtil;
-import dev.thedutchruben.core.framework.database.MongoDb;
 import dev.thedutchruben.core.framework.server.Game;
 import dev.thedutchruben.core.framework.server.GameLog;
 import dev.thedutchruben.core.framework.server.GameState;
 import dev.thedutchruben.core.framework.server.Log;
 import dev.thedutchruben.core.modules.game.GameModule;
+import dev.thedutchruben.core.modules.level.LevelModule;
 import dev.thedutchruben.core.modules.logging.LoggingModule;
 import dev.thedutchruben.core.modules.player.PlayerModule;
+import dev.thedutchruben.core.utils.BungeeUtil;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
