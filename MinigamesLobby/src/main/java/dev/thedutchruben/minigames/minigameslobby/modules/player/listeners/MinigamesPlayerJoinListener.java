@@ -1,8 +1,6 @@
 package dev.thedutchruben.minigames.minigameslobby.modules.player.listeners;
 
 import dev.thedutchruben.core.framework.player.event.MinigamePlayerJoinEvent;
-import dev.thedutchruben.core.utils.FireworkEffectPlayer;
-import dev.thedutchruben.core.utils.Utils;
 import dev.thedutchruben.minigames.minigameslobby.MinigamesLobby;
 import dev.thedutchruben.minigames.minigameslobby.framework.player.LobbyPlayer;
 import dev.thedutchruben.minigames.minigameslobby.modules.hologram.HologramModule;

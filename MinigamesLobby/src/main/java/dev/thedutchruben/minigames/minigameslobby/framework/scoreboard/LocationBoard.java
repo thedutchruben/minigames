@@ -1,7 +1,6 @@
 package dev.thedutchruben.minigames.minigameslobby.framework.scoreboard;
 
 import dev.thedutchruben.core.framework.scoreboard.BPlayerBoard;
-import dev.thedutchruben.core.framework.scoreboard.PlayerBoard;
 import org.bukkit.Material;
 
 

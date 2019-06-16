@@ -12,7 +12,6 @@ import dev.thedutchruben.core.utils.Config;
 import dev.thedutchruben.minigames.minigameslobby.framework.scoreboard.LocationBoard;
 import dev.thedutchruben.minigames.minigameslobby.modules.player.PlayerModule;
 import dev.thedutchruben.minigames.minigameslobby.modules.serversigns.ServersignModule;
-import org.bson.BsonContextType;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
