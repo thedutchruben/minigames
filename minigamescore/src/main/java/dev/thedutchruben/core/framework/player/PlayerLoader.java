@@ -20,9 +20,7 @@ public class PlayerLoader {
     }
 
     public CompletableFuture<MinigamesPlayer> getMinigamesPlayer(UUID uuid){
-        return CompletableFuture.supplyAsync(() -> {
-            return mongoCollection.find(eq("_id", uuid.toString()));
-        }).thenApply(documentIterator -> {
+        return CompletableFuture.supplyAsync(() -> mongoCollection.find(eq("_id", uuid.toString()))).thenApply(documentIterator -> {
             Document document = (Document) documentIterator.first();
             MinigamesPlayer minigamesPlayer;
             if(document != null && !document.isEmpty()){

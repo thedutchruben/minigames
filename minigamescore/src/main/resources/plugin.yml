@@ -9,3 +9,6 @@ commands:
   level:
     description: Level command
     permission: minigames.core.command.level
+  friend:
+    description: Friend command
+    permission: minigames.core.command.friend

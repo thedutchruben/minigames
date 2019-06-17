@@ -25,8 +25,8 @@ public class MinigamesPlayerJoinListener implements Listener {
                 "-------------Minigames-------------\n" +
                         " \n" +
                         "Line",
-                " \n" +
-                        "Line\n" +
+                "Line\n" +
+                        "\n" +
                         "-------------Minigames-------------");
         MinigamesLobby.getInstance().getPlayerModule().giveLobbyItems(event.getMinigamesPlayer().getBukkitPlayer());
         new HologramModule().setUpHolos(event.getMinigamesPlayer().getBukkitPlayer());

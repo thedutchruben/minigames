@@ -1,12 +1,14 @@
 package dev.thedutchruben.core;
 
 import dev.thedutchruben.core.framework.database.MongoDb;
+import dev.thedutchruben.core.framework.database.RedisDb;
 import dev.thedutchruben.core.framework.level.Level;
 import dev.thedutchruben.core.framework.level.LevelLoader;
 import dev.thedutchruben.core.framework.server.Game;
 import dev.thedutchruben.core.framework.server.GameLog;
 import dev.thedutchruben.core.framework.server.GameState;
 import dev.thedutchruben.core.framework.server.Log;
+import dev.thedutchruben.core.modules.friend.FriendModule;
 import dev.thedutchruben.core.modules.game.GameModule;
 import dev.thedutchruben.core.modules.level.LevelModule;
 import dev.thedutchruben.core.modules.logging.LoggingModule;
@@ -30,9 +32,11 @@ public final class MiniGamesCore extends JavaPlugin {
     @Getter private PlayerModule playerModule;
     @Getter private GameModule gameModule;
     @Getter private MongoDb mongoDb;
+    @Getter private RedisDb redisDb;
     @Getter private GameLog gameLog;
     @Getter private LevelLoader levelLoader;
     @Getter private LevelModule levelModule;
+    @Getter private FriendModule friendModule;
     @Getter private Set<Level> levels;
     /**
      * Enabling of the plugin
@@ -45,12 +49,14 @@ public final class MiniGamesCore extends JavaPlugin {
         try {
             instance = this;
             mongoDb = new MongoDb();
+            redisDb = new RedisDb();
             playerModule = new PlayerModule();
             gameModule = new GameModule();
             new LoggingModule();
             levelLoader = new LevelLoader();
             levels = levelLoader.loadLevels();
             levelModule = new LevelModule();
+            friendModule = new FriendModule();
             BungeeUtil.registerBungeeCordOut(this);
             gameLog = new GameLog(new ArrayList<>());
             gameLog.addEvent(new Log(new Date(),false,"Server is opgestart!"));
@@ -73,6 +79,9 @@ public final class MiniGamesCore extends JavaPlugin {
 
         gameModule = null;
         playerModule = null;
+        redisDb.getPool().destroy();
+        redisDb = null;
+        mongoDb.getMongoClient().close();
         mongoDb = null;
         instance = null;
     }

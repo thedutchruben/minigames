@@ -12,7 +12,14 @@ public class GameEndListener implements Listener {
 
     @EventHandler
     public void onEnd(GameEndEvent gameEndEvent){
-        Bukkit.getScheduler().runTaskLater(MiniGamesCore.getInstance(),() -> Bukkit.getOnlinePlayers().forEach(o -> BungeeUtil.send(o,"lobby")),20*50);
+        Bukkit.getScheduler().runTaskLater(MiniGamesCore.getInstance(),() ->{
+            MiniGamesCore.getInstance().getPlayerModule().getMinigamesPlayers().values().forEach(minigamesPlayer -> {
+                MiniGamesCore.getInstance().getPlayerModule().getPlayerLoader().save(minigamesPlayer).whenComplete((aVoid, throwable) -> {
+                    BungeeUtil.send(minigamesPlayer.getBukkitPlayer(),"lobby");
+                });
+
+            });
+        },20*40);
         Bukkit.getScheduler().runTaskLater(MiniGamesCore.getInstance(),() -> Bukkit.getServer().shutdown(),20*60);
     }
 }
