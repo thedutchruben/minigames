@@ -22,7 +22,9 @@ public class GameEndRunnable implements Runnable {
         if(gameTime == 60){
             MessageUtil.broadCast("De game eindigd over 1 minuut!");
         }
-
+        if(gameTime <=10 && gameTime >=1){
+            MessageUtil.broadCast("De game eindigd over <time> seconden!".replace("<time>",gameTime +""));
+        }
         if(gameTime == 0){
             Bukkit.getScheduler().runTask(Thesearch.getInstance(),() -> Bukkit.getPluginManager().callEvent(new dev.thedutchruben.core.framework.server.events.GameEndEvent(Game.getGame(),null)));
         }

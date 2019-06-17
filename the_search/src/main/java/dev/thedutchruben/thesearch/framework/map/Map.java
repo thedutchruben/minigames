@@ -17,11 +17,7 @@ public class Map {
         this.ammount = ammount;
     }
 
-    public Map(Location spawn, Location spawnMapLocation, List<Location> headLocations) {
-        this.spawn = spawn;
-        this.spawnMapLocation = spawnMapLocation;
-        this.headLocations = headLocations;
-    }
+
 
     public Location getSpawn() {
         return spawn;
