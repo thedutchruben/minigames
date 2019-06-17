@@ -1,6 +1,7 @@
 package dev.thedutchruben.minigames.minigameslobby.modules.player.listeners;
 
 import dev.thedutchruben.core.framework.player.event.MinigamePlayerJoinEvent;
+import dev.thedutchruben.core.framework.scoreboard.BPlayerBoard;
 import dev.thedutchruben.minigames.minigameslobby.MinigamesLobby;
 import dev.thedutchruben.minigames.minigameslobby.framework.player.LobbyPlayer;
 import dev.thedutchruben.minigames.minigameslobby.modules.hologram.HologramModule;
@@ -20,10 +21,19 @@ public class MinigamesPlayerJoinListener implements Listener {
     public void onJoin(MinigamePlayerJoinEvent event){
         Player player = Bukkit.getPlayer(event.getMinigamesPlayer().getUuid());
         player.setLevel(event.getMinigamesPlayer().getCommonData().getLevel());
+        event.getMinigamesPlayer().getBukkitPlayer().setPlayerListHeaderFooter(
+                "-------------Minigames-------------\n" +
+                        " \n" +
+                        "Line",
+                " \n" +
+                        "Line\n" +
+                        "-------------Minigames-------------");
         MinigamesLobby.getInstance().getPlayerModule().giveLobbyItems(event.getMinigamesPlayer().getBukkitPlayer());
         new HologramModule().setUpHolos(event.getMinigamesPlayer().getBukkitPlayer());
         MinigamesLobby.getInstance().getPlayerModule().getLobbyPlayerMap().put(event.getMinigamesPlayer().getUuid(),new LobbyPlayer(new HashMap<>(),event.getMinigamesPlayer().getUuid(), Material.AIR));
-        MinigamesLobby.getInstance().getScoreboards().stream().filter(locationBoard -> locationBoard.getMaterial() == Material.AIR).findFirst().get().getScoreboard().setPlayer(event.getMinigamesPlayer().getBukkitPlayer());
-
+        BPlayerBoard bPlayerBoard = new BPlayerBoard("MiniGamesLobby");
+        bPlayerBoard.setPlayer(event.getMinigamesPlayer().getBukkitPlayer());
+        bPlayerBoard.set("?",1);
+        bPlayerBoard.set("play.thedutchruben.dev",0);
     }
 }

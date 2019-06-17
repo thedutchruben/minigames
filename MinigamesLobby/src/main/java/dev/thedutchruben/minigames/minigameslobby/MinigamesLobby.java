@@ -9,7 +9,6 @@ import dev.thedutchruben.core.framework.server.Game;
 import dev.thedutchruben.core.framework.server.GameState;
 import dev.thedutchruben.core.framework.server.GameType;
 import dev.thedutchruben.core.utils.Config;
-import dev.thedutchruben.minigames.minigameslobby.framework.scoreboard.LocationBoard;
 import dev.thedutchruben.minigames.minigameslobby.modules.player.PlayerModule;
 import dev.thedutchruben.minigames.minigameslobby.modules.serversigns.ServersignModule;
 import org.bson.Document;
@@ -27,7 +26,6 @@ public final class MinigamesLobby extends JavaPlugin {
     private static MinigamesLobby instance;
     private Config lobbyconfig;
     private Config signConfig;
-    private List<LocationBoard> scoreboards;
     private ServersignModule serversignModule;
     private PlayerModule playerModule;
 
@@ -46,12 +44,6 @@ public final class MinigamesLobby extends JavaPlugin {
         loadLobby();
         playerModule = new PlayerModule();
         serversignModule = new ServersignModule();
-        scoreboards = getScoreboards();
-        BPlayerBoard playerBoard = new BPlayerBoard("MinigamesLobby");
-        LocationBoard locationBoard = new LocationBoard("Default", Material.AIR,playerBoard);
-
-        scoreboards.add(locationBoard);
-        saveScoreboard(locationBoard);
     }
 
     @Override
@@ -84,23 +76,7 @@ public final class MinigamesLobby extends JavaPlugin {
         return playerModule;
     }
 
-    public List<LocationBoard> getScoreboards() {
-        List<LocationBoard> lockedBlocks = new CopyOnWriteArrayList<>();
-        MiniGamesCore.getInstance().getMongoDb().getMongoDatabase().getCollection("lobby-scoreboard").find().forEach((Block<Document>) document -> {
-            lockedBlocks.add(MiniGamesCore.getInstance().getMongoDb().getGson().fromJson(document.toJson(), LocationBoard.class));
-        });
 
-        return lockedBlocks;
-    }
 
-    public void saveScoreboard(LocationBoard serverSign){
-        CompletableFuture.runAsync(() -> {
-            Document document = Document.parse(MiniGamesCore.getInstance().getMongoDb().getGson().toJson(serverSign, LocationBoard.class)).append("_id",serverSign.getName());
-            MiniGamesCore.getInstance().getMongoDb().getMongoDatabase().getCollection("lobby-scoreboard").replaceOne(new BasicDBObject().append("_id", UUID.randomUUID().toString()), document, new UpdateOptions().upsert(true));
-        }).exceptionally(throwable -> {
-            throwable.printStackTrace();
-            return null;
-        });
-    }
 
 }

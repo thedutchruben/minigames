@@ -49,7 +49,7 @@ public class GameModule {
     }
 
     public void createScoreboard(MinigamesPlayer minigamesPlayer){
-        BPlayerBoard board = Netherboard.instance().createBoard(minigamesPlayer.getBukkitPlayer(), Game.getGame().getGameType().getDisplayName());
+        BPlayerBoard board = Netherboard.instance().createBoard(minigamesPlayer.getBukkitPlayer(),Game.getGame().getGameType().getDisplayName());
         board.set("&8Stukjes kaas gevonden:",3);
         board.set("&f" +Thesearch.getInstance().getPlayerModule().getSearchPlayers().get(minigamesPlayer.getUuid()).getLocations().size(),2);
         board.set(" ",1);

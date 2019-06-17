@@ -44,7 +44,7 @@ public class Netherboard {
         deleteBoard(player);
 
         BPlayerBoard board = new BPlayerBoard(scoreboard, name);
-
+        board.setPlayer(player);
         boards.put(player, board);
         return board;
     }

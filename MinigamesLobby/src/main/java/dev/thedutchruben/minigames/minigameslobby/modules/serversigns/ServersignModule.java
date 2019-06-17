@@ -38,6 +38,15 @@ public class ServersignModule {
             serverSigns = getGamesSignDb();
             checkSigns();
         },0,20);
+        Bukkit.getScheduler().runTaskLater(MinigamesLobby.getInstance(),() -> {
+            if(!serverSigns.isEmpty()) {
+                locationGameMap.clear();
+                serverSigns.forEach(serverSign -> {
+                    setNoGameSignText(serverSign.getGame(), serverSign.getLocation());
+                });
+            }
+        },20);
+
     }
 
     public void registerListeners(){
@@ -86,40 +95,41 @@ public class ServersignModule {
     }
 
     public void checkSigns(){
-        for (ServerSign serverSign : getServerSigns()) {
-            setNoGameSignText(serverSign.getGame(),serverSign.getLocation());
-            if(this.locationGameMap.containsKey(serverSign.getLocation())){
-                Sign sign = (Sign) serverSign.getLocation().getBlock().getState();
-                Game signGame = getGames().stream().filter(game -> game.getGameType() == serverSign.getGame()).filter(game -> game.getServerName().equalsIgnoreCase(sign.getLine(2))).findFirst().get();
-                if (signGame.getGameState() != GameState.RESTARTING && signGame.getGameState() != GameState.ENDING && signGame.getGameState() != GameState.INGAME) {
-                    setSignText(signGame,serverSign.getLocation());
-                    return;
+        System.out.println(1);
+        if(!locationGameMap.isEmpty()){
+            System.out.println(2);
+            locationGameMap.forEach((location, game) -> {
+                System.out.println(3);
+                if(game.getGameState() != GameState.LOBBY){
+                    System.out.println(4);
+                    setNoGameSignText(game.getGameType(),location);
+                    locationGameMap.remove(location);
+                }else{
+                    System.out.println(5);
+                    setSignText(game,location);
+                }
+            });
+        }
+        System.out.println(10);
+        for(GameType gameType : GameType.values()) {
+            System.out.println(gameType.getDisplayName());
+            getServerSigns().stream().filter(serverSign -> serverSign.getGame() == gameType).forEach(serverSign -> {
+                System.out.println(serverSign.getLocation().toString());
+                Iterator<Game> gameIterator = getGames().stream().filter(game -> game.getGameType()  == gameType).iterator();
+                System.out.println(11);
+                if(!gameIterator.hasNext()){
+                    System.out.println(12);
+                    setNoGameSignText(gameType,serverSign.getLocation());
                 }else {
-                    Optional<Game> newGame = getGames().stream().filter(game -> game.getGameState() == GameState.LOBBY).filter(game -> game.getGameType() == serverSign.getGame()).filter(game -> isActive(game)).findFirst();
-                    if (newGame.isPresent()) {
-                        if(!locationGameMap.containsValue(newGame.get())){
-                            setSignText(newGame.get(), serverSign.getLocation());
-                            return;
-                        }
-                    }else{
-                        locationGameMap.remove(serverSign.getLocation());
-                        setNoGameSignText(serverSign.getGame(),serverSign.getLocation());
-                        return;
+                    System.out.println(13);
+                    Optional<Game> game2 = getGames().stream().filter(game -> game.getGameType() == gameType).filter(game -> !locationGameMap.containsKey(serverSign.getLocation())).filter(game -> game.getGameState() == GameState.LOBBY).findFirst();
+                    if (game2.isPresent()) {
+                        System.out.println(14);
+                        setSignText(game2.get(), serverSign.getLocation());
+                        locationGameMap.put(serverSign.getLocation(), game2.get());
                     }
                 }
-
-            }else {
-                Optional<Game> newGame = getGames().stream()
-                        .filter(game -> game.getGameState() == GameState.LOBBY)
-                        .filter(game -> game.getGameType() == serverSign.getGame())
-                        .filter(game -> isActive(game)).findFirst();
-                if (newGame.isPresent()&& !locationGameMap.containsValue(newGame.get())) {
-                    setSignText(newGame.get(), serverSign.getLocation());
-                    locationGameMap.put(serverSign.getLocation(),newGame.get());
-                }else{
-                    setNoGameSignText(serverSign.getGame(),serverSign.getLocation());
-                }
-            }
+            });
         }
     }
 

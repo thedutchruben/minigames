@@ -49,4 +49,9 @@ public class PlayerModule {
     public Map<UUID, LobbyPlayer> getLobbyPlayerMap() {
         return lobbyPlayerMap;
     }
+
+
+    public void setBoard(LobbyPlayer lobbyPlayer){
+        
+    }
 }

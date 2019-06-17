@@ -31,9 +31,7 @@ public class GameStartListener implements Listener {
         }
         MiniGamesCore.getInstance().getPlayerModule().getMinigamesPlayers().values().forEach(minigamesPlayer ->{
             Thesearch.getInstance().getGameMode().createScoreboard(minigamesPlayer);
-            minigamesPlayer.getTheSearchData().setLastTimePlayed(new Date());
             minigamesPlayer.getTheSearchData().setGamesPlayed(minigamesPlayer.getTheSearchData().getGamesPlayed() + 1);
-
         });
         Bukkit.getScheduler().runTaskTimerAsynchronously(Thesearch.getInstance(),new GameEndRunnable(),0,20);
 
