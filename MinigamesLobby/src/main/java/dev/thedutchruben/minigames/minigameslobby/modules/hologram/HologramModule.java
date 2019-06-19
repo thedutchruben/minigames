@@ -20,10 +20,12 @@ public class HologramModule {
 
     public void setUpBasicStatsHologram(Player player){
         MinigamesPlayer minigamesPlayer = PlayerModule.getMinigamesPlayer(player);
-        Holograms holograms = new Holograms(Arrays.asList( "<---------> Stats <--------->",
+        Holograms holograms = new Holograms(Arrays.asList(
+                "<---------> Stats <--------->",
                 "Coins : " + minigamesPlayer.getEconomicData().getCoins(),
                 "Level : " + minigamesPlayer.getCommonData().getLevel(),
-                "Online time : " + minigamesPlayer.getCommonData().getTotalPlayTime())
+                "Online time : " + minigamesPlayer.getCommonData().getTotalPlayTime(),
+                "<---------> Stats <--------->")
                ,(new Location(Bukkit.getWorlds().get(0),-1261.450,15,754.207)));
         holograms.showPlayer(player);
     }
@@ -33,8 +35,10 @@ public class HologramModule {
         Holograms holograms = new Holograms(Arrays.asList(
                 "<---------> The Search Stats <--------->",
                 "Gespeelde games : " + minigamesPlayer.getTheSearchData().getGamesPlayed(),
-                "Wins : " + minigamesPlayer.getTheSearchData().getGamesWon())
-                ,new Location(Bukkit.getWorlds().get(0),-1239,15,745) );
+                "Wins : " + minigamesPlayer.getTheSearchData().getGamesWon(),
+                "Totale stukjes kaas gevonden : " + minigamesPlayer.getTheSearchData().getTotalHeadsFound(),
+                "<---------> The Search Stats <--------->")
+                ,new Location(Bukkit.getWorlds().get(0),-1239,15,745));
         holograms.showPlayer(player);
     }
 

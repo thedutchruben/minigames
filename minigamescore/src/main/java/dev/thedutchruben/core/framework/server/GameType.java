@@ -11,7 +11,7 @@ public enum  GameType {
     TNT_TAG("&4Tnt Tag"),
     HIDE_AND_SEEK("&6Hide and Seek"),
     THE_SEARCH("&7The Search"),
-    PARKOUR("&4Tnt Run"),
+    PARKOUR("&1Parkour"),
     BINGO("&4Tnt Run"),
     KIT_PVP("&4Tnt Run"),
     TASKING("&4Tnt Run"),

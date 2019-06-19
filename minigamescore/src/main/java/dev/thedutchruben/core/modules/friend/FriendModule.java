@@ -20,4 +20,8 @@ public class FriendModule {
     public void friendJoin(UUID uuid){
         MiniGamesCore.getInstance().getRedisDb().getPool().getResource().publish("friend-join",uuid.toString());
     }
+
+    public void friendQuit(UUID uuid){
+        MiniGamesCore.getInstance().getRedisDb().getPool().getResource().publish("friend-quit",uuid.toString());
+    }
 }

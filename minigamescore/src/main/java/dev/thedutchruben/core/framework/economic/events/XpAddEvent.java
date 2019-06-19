@@ -7,5 +7,7 @@ import lombok.NonNull;
 public class XpAddEvent extends EcoEvent{
     public XpAddEvent(@NonNull double ammount, MinigamesPlayer minigamesPlayer) {
         super(ammount, EcoType.XP,minigamesPlayer);
+        minigamesPlayer.getCommonData().addXp(ammount);
+
     }
 }

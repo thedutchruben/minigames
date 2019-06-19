@@ -23,7 +23,7 @@ public class DataMapAdapter implements JsonSerializer<DataMap>, JsonDeserializer
             }
 
             if (!PlayerData.class.isAssignableFrom(checkableClass)) {
-                throw new JsonParseException(checkableClass + " could not be cast to PlanetCraftData");
+                throw new JsonParseException(checkableClass + " could not be cast to MiniPlayerData");
             }
 
             Class<? extends PlayerData> dataClass = (Class<? extends PlayerData>) checkableClass;

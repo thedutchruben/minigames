@@ -1,10 +1,7 @@
 package dev.thedutchruben.core.utils;
 
 import dev.thedutchruben.core.MiniGamesCore;
-import net.minecraft.server.v1_13_R2.ChatMessage;
-import net.minecraft.server.v1_13_R2.EntityArmorStand;
-import net.minecraft.server.v1_13_R2.PacketPlayOutEntityDestroy;
-import net.minecraft.server.v1_13_R2.PacketPlayOutSpawnEntityLiving;
+import net.minecraft.server.v1_13_R2.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_13_R2.CraftWorld;
@@ -42,6 +39,7 @@ public class Holograms {
     }
 
     public void showPlayer(Player p) {
+
         for (EntityArmorStand armor : entitylist) {
             PacketPlayOutSpawnEntityLiving packet = new PacketPlayOutSpawnEntityLiving(armor);
             ((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet);
@@ -66,6 +64,7 @@ public class Holograms {
     }
 
     public void hideAll() {
+
         for (Player player : Bukkit.getOnlinePlayers()) {
             for (EntityArmorStand armor : entitylist) {
                 PacketPlayOutEntityDestroy packet = new PacketPlayOutEntityDestroy(armor.getId());

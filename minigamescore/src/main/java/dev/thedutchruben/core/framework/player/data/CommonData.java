@@ -9,7 +9,7 @@ public class CommonData  implements PlayerData {
 
     private long totalPlayTime;
     private int level;
-    private int xp;
+    private double xp;
 
 
     public static CommonData create(MinigamesPlayer player) {
@@ -24,11 +24,11 @@ public class CommonData  implements PlayerData {
         return level;
     }
 
-    public int getXp() {
+    public double getXp() {
         return xp;
     }
 
-    public void addXp(int xp){
+    public void addXp(double xp){
         this.xp += xp;
     }
 }
