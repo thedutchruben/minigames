@@ -6,6 +6,7 @@ import dev.thedutchruben.core.framework.player.PlayerData;
 import dev.thedutchruben.core.framework.player.PlayerLoader;
 import dev.thedutchruben.core.modules.player.listeners.PlayerJoinListener;
 import dev.thedutchruben.core.modules.player.listeners.PlayerQuitListener;
+import dev.thedutchruben.core.modules.player.listeners.PreLoginListener;
 import lombok.Getter;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
@@ -24,11 +25,12 @@ public class PlayerModule {
         minigamesPlayers = new HashMap<>();
         Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), MiniGamesCore.getInstance());
         Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(), MiniGamesCore.getInstance());
-
+        Bukkit.getPluginManager().registerEvents(new PreLoginListener(),MiniGamesCore.getInstance());
         playerLoader = new PlayerLoader();
     }
 
     public static MinigamesPlayer getMinigamesPlayer(Player player){
+        Validate.notNull(player,"Player can't be null");
         return MiniGamesCore.getInstance().getPlayerModule().getMinigamesPlayer(player.getUniqueId());
     }
 
