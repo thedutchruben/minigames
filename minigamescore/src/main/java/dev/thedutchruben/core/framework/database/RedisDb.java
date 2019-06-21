@@ -14,6 +14,7 @@ public class RedisDb {
     public RedisDb() {
         pool = new JedisPool("bungee-redis-1");
         pool.getResource().connect();
+
         try (Jedis connection = pool.getResource()) {
             if (connection.isConnected()) {
             } else {
