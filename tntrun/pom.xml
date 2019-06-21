@@ -73,7 +73,7 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>dev.thedutchruben</groupId>
+            <groupId>dev.thedutchruben.minigames</groupId>
             <artifactId>minigamescore</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
