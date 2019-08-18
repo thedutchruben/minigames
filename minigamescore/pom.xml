@@ -5,18 +5,17 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>dev.thedutchruben.minigames</groupId>
-    <artifactId>core</artifactId>
+    <artifactId>MiniGamesCore</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Core</name>
+    <name>MiniGamesCore</name>
 
-    <description>Minigames core . The main of the minigames</description>
+    <description>MiniGamesCore</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <url>www.thedutchruben.dev</url>
 
     <build>
         <defaultGoal>clean package</defaultGoal>

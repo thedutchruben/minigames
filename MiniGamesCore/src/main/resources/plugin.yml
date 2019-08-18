@@ -1,7 +1,0 @@
-name: Core
-version: ${project.version}
-main: dev.thedutchruben.minigames.core.Core
-api-version: 1.13
-authors: [TheDutchRuben]
-description: Minigames core . The main of the minigames
-website: www.thedutchruben.dev
