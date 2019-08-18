@@ -1,6 +1,0 @@
-name: MinigamesLobby
-version: ${project.version}
-main: dev.thedutchruben.minigames.minigameslobby.MinigamesLobby
-api-version: 1.13
-depend:
-  - MinigamesCore

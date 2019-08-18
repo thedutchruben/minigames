@@ -1,4 +1,0 @@
-name: Thesearch
-version: ${project.version}
-main: dev.thedutchruben.thesearch.Thesearch
-api-version: 1.13
