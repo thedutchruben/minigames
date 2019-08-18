@@ -1,8 +1,5 @@
 package dev.thedutchruben.core.utils;
 
-import javax.management.*;
-import java.lang.management.ManagementFactory;
-
 public class HardWare {
 
 

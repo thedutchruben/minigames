@@ -1,6 +1,10 @@
 package dev.thedutchruben.minigames.minigamescore.utils;
 
-import net.minecraft.server.v1_13_R2.*;
+import dev.thedutchruben.minigames.minigamescore.MiniGamesCore;
+import net.minecraft.server.v1_13_R2.ChatMessage;
+import net.minecraft.server.v1_13_R2.EntityArmorStand;
+import net.minecraft.server.v1_13_R2.PacketPlayOutEntityDestroy;
+import net.minecraft.server.v1_13_R2.PacketPlayOutSpawnEntityLiving;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_13_R2.CraftWorld;

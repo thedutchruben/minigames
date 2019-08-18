@@ -21,7 +21,7 @@ public class Server {
                 ", serverType=" + serverType +
                 ", online=" + online +
                 ", maxPlayers=" + maxPlayers +
-                "," + serverInfo.toString() +
+                "\n" + serverInfo.toString() +
                 '}';
     }
 }
