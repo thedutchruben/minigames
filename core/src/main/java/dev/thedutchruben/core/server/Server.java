@@ -11,6 +11,7 @@ public class Server {
     private ServerType serverType;
     private int online;
     private int maxPlayers;
+    private ServerState serverState;
     private ServerInfo serverInfo;
 
     @Override
@@ -21,6 +22,7 @@ public class Server {
                 ", serverType=" + serverType +
                 ", online=" + online +
                 ", maxPlayers=" + maxPlayers +
+                ", ServerState= " + serverState.toString() +
                 "\n" + serverInfo.toString() +
                 '}';
     }

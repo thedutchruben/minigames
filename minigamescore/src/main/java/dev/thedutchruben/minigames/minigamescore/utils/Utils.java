@@ -27,7 +27,7 @@ public class Utils {
                 }
             }
         }
-        return (Entity[]) radiusEntities.toArray(new Entity[radiusEntities.size()]);
+        return radiusEntities.toArray(new Entity[radiusEntities.size()]);
     }
 
 

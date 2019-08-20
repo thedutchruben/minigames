@@ -21,4 +21,9 @@ public class ServerManager {
         Optional<Server> servers = Master.getInstance().getServers().stream().filter(server -> server.getId() == id).findAny();
         servers.ifPresent(ServerManager::unRegister);
     }
+
+    public static void unRegister(String serverName){
+        Optional<Server> servers = Master.getInstance().getServers().stream().filter(server -> server.getServerName().equalsIgnoreCase(serverName)).findAny();
+        servers.ifPresent(ServerManager::unRegister);
+    }
 }

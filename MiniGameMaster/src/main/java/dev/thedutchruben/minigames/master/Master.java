@@ -5,6 +5,7 @@ import dev.thedutchruben.core.server.ServerInfo;
 import dev.thedutchruben.core.server.ServerType;
 import dev.thedutchruben.core.utils.HardWare;
 import dev.thedutchruben.minigames.master.manager.server.ServerManager;
+import dev.thedutchruben.minigames.master.modules.docker.DockerModule;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,7 +17,7 @@ public class Master {
     private static Master instance;
     private List<Server> servers;
 
-    public static void main(String[] strings){
+    public static void main(String[] strings) {
         new Master();
 
         try (BufferedReader input = new BufferedReader(new InputStreamReader(System.in))) {
@@ -48,6 +49,7 @@ public class Master {
     public Master() {
         instance = this;
         servers = new ArrayList<>();
+        new DockerModule();
         ServerManager.register(new Server(1,"test-game",ServerType.GAME,0,0,new ServerInfo(2.0, HardWare.getFreeMB())));
         ServerManager.register(new Server(2,"test-2",ServerType.GAME,0,2,new ServerInfo(10, HardWare.getFreeMB())));
 
