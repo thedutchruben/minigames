@@ -50,9 +50,6 @@ public class Master {
         instance = this;
         servers = new ArrayList<>();
         new DockerModule();
-        ServerManager.register(new Server(1,"test-game",ServerType.GAME,0,0,new ServerInfo(2.0, HardWare.getFreeMB())));
-        ServerManager.register(new Server(2,"test-2",ServerType.GAME,0,2,new ServerInfo(10, HardWare.getFreeMB())));
-
     }
 
     public static Master getInstance() {

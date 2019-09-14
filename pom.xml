@@ -11,6 +11,7 @@
     <modules>
         <module>MiniGameMaster</module>
         <module>core</module>
+        <module>MiniGamesCore</module>
     </modules>
 
 </project>
