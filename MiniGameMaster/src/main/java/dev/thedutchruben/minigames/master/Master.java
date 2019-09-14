@@ -1,10 +1,6 @@
 package dev.thedutchruben.minigames.master;
 
 import dev.thedutchruben.core.server.Server;
-import dev.thedutchruben.core.server.ServerInfo;
-import dev.thedutchruben.core.server.ServerType;
-import dev.thedutchruben.core.utils.HardWare;
-import dev.thedutchruben.minigames.master.manager.server.ServerManager;
 import dev.thedutchruben.minigames.master.modules.docker.DockerModule;
 
 import java.io.BufferedReader;
@@ -16,6 +12,12 @@ import java.util.List;
 public class Master {
     private static Master instance;
     private List<Server> servers;
+
+    public Master() {
+        instance = this;
+        servers = new ArrayList<>();
+        new DockerModule();
+    }
 
     public static void main(String[] strings) {
         new Master();
@@ -34,7 +36,7 @@ public class Master {
                 if (command.equalsIgnoreCase("exit") || command.equalsIgnoreCase("stop") || command.equalsIgnoreCase("end")) {
                     System.exit(0);
                 }
-                if(command.equalsIgnoreCase("servers")){
+                if (command.equalsIgnoreCase("servers")) {
                     for (Server server : getInstance().servers) {
                         System.out.println(server.toString());
                     }
@@ -44,12 +46,6 @@ public class Master {
             exception.printStackTrace();
         }
 
-    }
-
-    public Master() {
-        instance = this;
-        servers = new ArrayList<>();
-        new DockerModule();
     }
 
     public static Master getInstance() {
