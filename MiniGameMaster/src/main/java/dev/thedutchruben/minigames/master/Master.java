@@ -1,7 +1,6 @@
 package dev.thedutchruben.minigames.master;
 
 import dev.thedutchruben.core.server.Server;
-import dev.thedutchruben.minigames.master.modules.docker.DockerModule;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,7 +15,6 @@ public class Master {
     public Master() {
         instance = this;
         servers = new ArrayList<>();
-        new DockerModule();
     }
 
     public static void main(String[] strings) {

@@ -4,9 +4,11 @@ import dev.thedutchruben.core.server.Server;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 
-@AllArgsConstructor
 @Data
 public class GameMode {
     private String name;
@@ -16,6 +18,5 @@ public class GameMode {
     private int minGames;
     private int maxGames;
     private List<Server> activeServers;
-
 
 }

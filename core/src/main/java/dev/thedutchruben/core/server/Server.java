@@ -26,4 +26,5 @@ public class Server {
                 "\n" + serverInfo.toString() +
                 '}';
     }
+
 }
