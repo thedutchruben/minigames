@@ -13,9 +13,7 @@ public final class Minigamescore extends JavaPlugin {
 
         new LanguageModule();
 
-        LanguageModule.getLanguages().forEach(s -> {
-            System.out.println("DEBUG : " + LanguageModule.translate("Server started", s));
-        });
+
 
 
     }
