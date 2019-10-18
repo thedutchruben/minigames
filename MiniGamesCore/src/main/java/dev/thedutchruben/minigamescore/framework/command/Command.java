@@ -1,17 +1,21 @@
 package dev.thedutchruben.minigamescore.framework.command;
 
-import co.aurasphere.jyandex.dto.Language;
 import dev.thedutchruben.minigamescore.modules.command.CommandModule;
-import dev.thedutchruben.minigamescore.modules.language.LanguageModule;
+import dev.thedutchruben.minigamescore.utils.Colors;
+import dev.thedutchruben.minigamescore.utils.MessageUtil;
 import lombok.Setter;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 
-public abstract class Command extends org.bukkit.command.Command {
+public abstract class Command extends org.bukkit.command.Command implements TabCompleter {
+
+    private String commandPermissionPrefix = "minigames.command.";
 
     private List<SubCommand> subCommands;
     @Setter
@@ -19,7 +23,7 @@ public abstract class Command extends org.bukkit.command.Command {
 
     public Command(String command, String permission) {
         super(command);
-        setPermission(permission);
+        setPermission(commandPermissionPrefix + permission);
         this.subCommands = new ArrayList<>();
         CommandModule.getCommandMap().register("minigamescore", this);
     }
@@ -33,7 +37,9 @@ public abstract class Command extends org.bukkit.command.Command {
         if (args.length <= 0) {
             if (defaultList) {
                 for (SubCommand command : subCommands) {
-                    sender.sendMessage(commandLabel + " " + command.getCommand() + LanguageModule.translate(" - " + command.getDescription(), Language.ENGLISH));
+                    for (String subCommandAlas : command.getAlias()) {
+                        sender.sendMessage(commandLabel + " " + subCommandAlas + " - " + "lang");
+                    }
                 }
             } else {
                 executeDefault(sender, args);
@@ -45,12 +51,13 @@ public abstract class Command extends org.bukkit.command.Command {
             if (sender.hasPermission(subCommand1.getPermission())) {
                 subCommand1.execute(sender);
             } else {
-                sender.sendMessage(LanguageModule.translate("Je hebt geen toestemming om dit uit te voeren!", Language.ENGLISH));
+                MessageUtil.sendMessage((Player) sender, Colors.WARNING,"You dont have permission to do this!",true);
+
             }
         } else {
             if (defaultList) {
                 for (SubCommand command : subCommands) {
-                    sender.sendMessage(commandLabel + " " + command.getCommand() + LanguageModule.translate(" - " + command.getDescription(), Language.ENGLISH));
+                    MessageUtil.sendMessage((Player) sender, Colors.WARNING,commandLabel + " " + command.getCommand() +" - " + command.getDescription(),false);
                 }
             } else {
                 executeDefault(sender, args);
@@ -60,4 +67,17 @@ public abstract class Command extends org.bukkit.command.Command {
     }
 
     public abstract void executeDefault(CommandSender commandSender, String[] args);
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, org.bukkit.command.Command command, String alias, String[] args) {
+        List<String> commands = new ArrayList<>();
+        for (SubCommand subCommand : subCommands) {
+            for (String subCommandAlias : subCommand.getAlias()) {
+                if(subCommandAlias.startsWith(String.valueOf(args))){
+                    commands.add(subCommandAlias);
+                }
+            }
+        }
+        return commands;
+    }
 }

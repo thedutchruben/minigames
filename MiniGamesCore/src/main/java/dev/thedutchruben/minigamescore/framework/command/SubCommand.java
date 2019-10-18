@@ -1,19 +1,30 @@
 package dev.thedutchruben.minigamescore.framework.command;
 
+import dev.thedutchruben.minigamescore.utils.Colors;
 import lombok.Data;
 import org.bukkit.command.CommandSender;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public abstract class SubCommand {
     private Command command;
     private String subcommand;
     private String permission;
-    private String description = "No description";
+    private List<String> alias;
+    private String description = Colors.WARNING.getChatColor() + "No description";
 
-    public SubCommand(Command command, String subcommand, String permission) {
+    public SubCommand(Command command, String subcommand) {
         this.command = command;
         this.subcommand = subcommand;
-        this.permission = permission;
+        this.permission = command.getPermission() + subcommand;
+        alias = new ArrayList<>();
+        alias.add(subcommand);
+    }
+
+    public void addAlias(String subcommand){
+        alias.add(subcommand);
     }
 
     public abstract void execute(CommandSender commandSender);
