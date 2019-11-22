@@ -1,7 +1,0 @@
-name: Minigamescore
-version: ${project.version}
-main: dev.thedutchruben.minigamescore.Minigamescore
-api-version: 1.13
-authors: [TheDutchRuben]
-description: Spigot minigames core
-website: www.thedutchruben.dev
