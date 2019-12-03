@@ -1,0 +1,80 @@
+package dev.thedutchruben.minigamescore.framework.commands;
+
+import dev.thedutchruben.minigamescore.utils.Colors;
+import dev.thedutchruben.minigamescore.utils.MessageUtil;
+import lombok.Setter;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Player;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+public abstract class Command extends org.bukkit.command.Command implements TabCompleter {
+
+    private String commandPermissionPrefix = "minigames.command.";
+
+    private List<SubCommand> subCommands;
+    @Setter
+    private boolean defaultList = true;
+
+    public Command(String command, String permission) {
+        super(command);
+        setPermission(commandPermissionPrefix + permission);
+        this.subCommands = new ArrayList<>();
+    }
+
+    public void addSubCommand(SubCommand subCommand) {
+        subCommands.add(subCommand);
+    }
+
+    @Override
+    public boolean execute(CommandSender sender, String commandLabel, String[] args) {
+        if (args.length <= 0) {
+            if (defaultList) {
+                for (SubCommand command : subCommands) {
+                    for (String subCommandAlas : command.getAlias()) {
+                        sender.sendMessage(commandLabel + " " + subCommandAlas + " - " + "lang");
+                    }
+                }
+            } else {
+                executeDefault(sender, args);
+            }
+        }
+        Optional<SubCommand> subCommand = subCommands.stream().filter(subCommand1 -> subCommand1.getSubcommand().equalsIgnoreCase(args[0])).findAny();
+        if (subCommand.isPresent()) {
+            SubCommand subCommand1 = subCommand.get();
+            if (sender.hasPermission(subCommand1.getPermission())) {
+                subCommand1.execute(sender);
+            } else {
+                MessageUtil.sendMessage((Player) sender, Colors.WARNING,"You dont have permission to do this!",true);
+
+            }
+        } else {
+            if (defaultList) {
+                for (SubCommand command : subCommands) {
+                    MessageUtil.sendMessage((Player) sender, Colors.WARNING,commandLabel + " " + command.getCommand() +" - " + command.getDescription(),false);
+                }
+            } else {
+                executeDefault(sender, args);
+            }
+        }
+        return false;
+    }
+
+    public abstract void executeDefault(CommandSender commandSender, String[] args);
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, org.bukkit.command.Command command, String alias, String[] args) {
+        List<String> commands = new ArrayList<>();
+        for (SubCommand subCommand : subCommands) {
+            for (String subCommandAlias : subCommand.getAlias()) {
+                if(subCommandAlias.startsWith(String.valueOf(args))){
+                    commands.add(subCommandAlias);
+                }
+            }
+        }
+        return commands;
+    }
+}
