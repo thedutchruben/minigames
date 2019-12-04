@@ -8,7 +8,7 @@ import java.util.Set;
 public abstract class Module {
 
     public Module(){
-        Minigamescore.getInstance().getModules().add(this);
+        Minigamescore.getInstance().put(getClass());
     }
 
     abstract public void onLoad();

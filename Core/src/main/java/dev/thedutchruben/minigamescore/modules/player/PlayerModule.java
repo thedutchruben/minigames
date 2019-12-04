@@ -4,12 +4,15 @@ import dev.thedutchruben.minigamescore.framework.commands.Command;
 import dev.thedutchruben.minigamescore.framework.player.MiniGamesData;
 import dev.thedutchruben.minigamescore.framework.player.MinigamesPlayer;
 import dev.thedutchruben.minigamescore.framework.registery.Module;
+import dev.thedutchruben.minigamescore.modules.player.commands.FlyCommand;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashSet;
 import java.util.Set;
 
 public class PlayerModule extends Module {
+
     @Override
     public void onLoad() {
 
@@ -27,7 +30,9 @@ public class PlayerModule extends Module {
 
     @Override
     public Set<Command> getCommands() {
-        return null;
+        return new HashSet<Command>(){{
+            add(new FlyCommand());
+        }};
     }
 
 

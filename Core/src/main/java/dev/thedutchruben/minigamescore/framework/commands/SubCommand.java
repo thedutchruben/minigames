@@ -14,11 +14,11 @@ public abstract class SubCommand {
     private String permission;
     private List<String> alias;
     private String description = Colors.WARNING.getChatColor() + "No description";
-
+    private List<SubCommand> subCommands = new ArrayList<>();
     public SubCommand(Command command, String subcommand) {
         this.command = command;
         this.subcommand = subcommand;
-        this.permission = command.getPermission() + subcommand;
+        this.permission = command.getPermission() + "." +subcommand;
         alias = new ArrayList<>();
         alias.add(subcommand);
     }
@@ -27,6 +27,6 @@ public abstract class SubCommand {
         alias.add(subcommand);
     }
 
-    public abstract void execute(CommandSender commandSender);
+    public abstract void execute(CommandSender commandSender,String[] args);
 
 }
