@@ -14,7 +14,7 @@ import java.util.Optional;
 
 public abstract class Command extends org.bukkit.command.Command implements TabCompleter {
 
-    private String commandPermissionPrefix = "minigames.command.";
+    private final String commandPermissionPrefix = "minigames.command.";
 
     private List<SubCommand> subCommands;
     @Setter

@@ -1,3 +1,0 @@
-name: AutoregisterBungee
-version: ${project.version}
-main: dev.thedutchruben.autoregisterbungee.AutoregisterBungee

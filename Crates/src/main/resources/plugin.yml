@@ -1,0 +1,4 @@
+name: Crates
+version: ${project.version}
+main: dev.thedutchruben.minigames.crates.Crates
+api-version: 1.13

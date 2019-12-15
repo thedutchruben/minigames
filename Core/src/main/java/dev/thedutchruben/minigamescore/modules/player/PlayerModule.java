@@ -1,5 +1,6 @@
 package dev.thedutchruben.minigamescore.modules.player;
 
+import dev.thedutchruben.minigamescore.Minigamescore;
 import dev.thedutchruben.minigamescore.framework.commands.Command;
 import dev.thedutchruben.minigamescore.framework.player.MiniGamesData;
 import dev.thedutchruben.minigamescore.framework.player.MinigamesPlayer;
@@ -15,7 +16,7 @@ public class PlayerModule extends Module {
 
     @Override
     public void onLoad() {
-
+        System.out.println("load playermodle");
     }
 
     @Override
@@ -30,7 +31,7 @@ public class PlayerModule extends Module {
 
     @Override
     public Set<Command> getCommands() {
-        return new HashSet<Command>(){{
+        return new HashSet<>() {{
             add(new FlyCommand());
         }};
     }

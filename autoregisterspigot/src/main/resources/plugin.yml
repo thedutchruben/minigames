@@ -1,4 +1,0 @@
-name: Autoregisterspigot
-version: ${project.version}
-main: dev.thedutchruben.autoregisterspigot.Autoregisterspigot
-api-version: 1.13
