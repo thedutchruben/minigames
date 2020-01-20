@@ -11,8 +11,7 @@ import java.util.Set;
 public final class lobby extends Addon {
 
     public lobby() {
-        super(
-                "Lobby", 1.00);
+        super("Lobby", 1.00,Type.GAMEMODE);
     }
 
     @Override

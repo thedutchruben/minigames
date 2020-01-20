@@ -11,10 +11,11 @@ public abstract class Addon {
     @Getter @Setter private State state = State.DISABLED;
     @Getter private String name;
     @Getter private double version;
-
-    public Addon(String name, double version) {
+    @Getter private Type type;
+    public Addon(String name, double version,Type type) {
         this.name = name;
         this.version = version;
+        this.type = type;
     }
 
     public abstract void onEnable();
@@ -28,5 +29,10 @@ public abstract class Addon {
     public enum State{
         ENABLED,
         DISABLED
+    }
+
+    public enum Type{
+        GAMEMODE,
+        ADDON
     }
 }

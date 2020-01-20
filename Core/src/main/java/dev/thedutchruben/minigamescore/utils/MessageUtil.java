@@ -19,7 +19,7 @@ public class MessageUtil {
         for (String s : message.split(" ")) {
             for (Replacement replacement : replacements) {
                 if(s.equalsIgnoreCase(replacement.getKey())){
-                    s.replace(s, Colors.HIGH_LIGHT.getChatColor() + replacement.getKey()+ colors.getChatColor());
+                    s.replace(s, Colors.HIGH_LIGHT.getChatColor() + replacement.getReplacement()+ colors.getChatColor());
                 }
             }
         }

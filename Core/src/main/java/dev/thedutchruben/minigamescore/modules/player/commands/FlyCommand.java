@@ -19,7 +19,9 @@ public class FlyCommand extends Command {
     @Override
     public void executeDefault(CommandSender commandSender, String[] args) {
         Player player = (Player) commandSender;
+        player.setAllowFlight(!player.getAllowFlight());
         player.setFlying(!player.isFlying());
+
         MessageUtil.sendMessage(player, Colors.MESSAGE,"Je fly staat nu <FLYSTATE>",true, new Replacement("<FLYSTATE>",player.isFlying()+""));
     }
 }

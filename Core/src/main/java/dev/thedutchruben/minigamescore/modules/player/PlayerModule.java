@@ -16,7 +16,7 @@ public class PlayerModule extends Module {
 
     @Override
     public void onLoad() {
-        System.out.println("load playermodle");
+
     }
 
     @Override
@@ -33,6 +33,7 @@ public class PlayerModule extends Module {
     public Set<Command> getCommands() {
         return new HashSet<>() {{
             add(new FlyCommand());
+
         }};
     }
 
