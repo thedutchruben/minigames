@@ -1,0 +1,4 @@
+name: TntGames
+version: '${project.version}'
+main: nl.thedutchruben.minigames.tntgames.Minigames.Tntgames
+api-version: 1.19

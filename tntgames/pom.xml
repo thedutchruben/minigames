@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>nl.thedutchruben</groupId>
-    <artifactId>minigames.core</artifactId>
+    <artifactId>minigames.tntgames</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>MinigamesCore</name>
+    <name>TntGames</name>
 
     <properties>
         <java.version>1.8</java.version>

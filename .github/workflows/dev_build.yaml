@@ -32,15 +32,32 @@ jobs:
       - name: Upload Core
         uses: actions/upload-artifact@v3
         with:
-          name: minigames.core-r${{ steps.project.outputs.version }}.jar
-          path: ${{ env.artifactPath }}/core/target/minigames.core-r${{ steps.project.outputs.version }}.jar
+          name: minigames.core-${{ steps.project.outputs.version }}.jar
+          path: ${{ env.artifactPath }}/core/target/minigames.core-${{ steps.project.outputs.version }}.jar
 
       - name: Send core message
         uses: appleboy/discord-action@master
         with:
           webhook_id: ${{ secrets.WEBHOOK_ID }}
           webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
-          file: ${{ env.artifactPath }}/core/target/minigames.core-r${{ steps.project.outputs.version }}.jar
+          file: ${{ env.artifactPath }}/core/target/minigames.core-${{ steps.project.outputs.version }}.jar
           message: "New minigames.core build: ${{ steps.project.outputs.version }} - ${{ env.git_hash }}"
           color: "#48f442"
           username: "minigames.core Builds"
+
+      #      Upload Tntgames
+      - name: Upload Tntgames
+        uses: actions/upload-artifact@v3
+        with:
+          name: minigames.tntgames-${{ steps.project.outputs.version }}.jar
+          path: ${{ env.artifactPath }}/core/target/minigames.tntgames-${{ steps.project.outputs.version }}.jar
+
+      - name: Send Tntgames message
+        uses: appleboy/discord-action@master
+        with:
+          webhook_id: ${{ secrets.WEBHOOK_ID }}
+          webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
+          file: ${{ env.artifactPath }}/core/target/minigames.tntgames-${{ steps.project.outputs.version }}.jar
+          message: "New minigames.Tntgames build: ${{ steps.project.outputs.version }} - ${{ env.git_hash }}"
+          color: "#48f442"
+          username: "minigames.Tntgames Builds"
