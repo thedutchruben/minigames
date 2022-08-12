@@ -54,6 +54,10 @@
 
     <repositories>
         <repository>
+            <id>thedutchruben-repo</id>
+            <url>https://repo.thedutchruben.nl/repository/maven-public/</url>
+        </repository>
+        <repository>
             <id>spigotmc-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
