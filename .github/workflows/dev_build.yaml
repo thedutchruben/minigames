@@ -37,7 +37,7 @@ jobs:
 
 #      Upload core
       - name: Upload Core
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: minigames.core-${{ steps.project.outputs.version }}.jar
           path: ${{ env.artifactPath }}/core/target/minigames.core-${{ steps.project.outputs.version }}.jar
@@ -67,7 +67,7 @@ jobs:
           time: '5s'
       #      Upload Tntgames
       - name: Upload Tntgames
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: minigames.tntgames-${{ steps.project.outputs.version }}.jar
           path: ${{ env.artifactPath }}/tntgames/target/minigames.tntgames-${{ steps.project.outputs.version }}.jar
